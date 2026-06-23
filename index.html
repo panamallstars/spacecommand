@@ -5,9 +5,33 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>LAUNCHPAD · SpaceX launch tracker</title>
 <meta name="description" content="Live tracker of upcoming SpaceX launches — Falcon 9, Falcon Heavy, Starship. Mission patches, countdowns, booster life history and Wikipedia context. FR / EN." />
+<meta name="theme-color" content="#05070d" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="canonical" href="https://spacecommand.tech" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://spacecommand.tech" />
+<meta property="og:title" content="LAUNCHPAD · SpaceX launch tracker" />
+<meta property="og:description" content="Live tracker of upcoming SpaceX launches with countdowns, mission data, booster history and Wikipedia context." />
+<meta property="og:site_name" content="LAUNCHPAD" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:locale:alternate" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="LAUNCHPAD · SpaceX launch tracker" />
+<meta name="twitter:description" content="Live tracker of upcoming SpaceX launches with real-time countdowns and mission data." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-XXXXXXXXXX', {
+  'anonymize_ip': true,
+  'cookie_flags': 'SameSite=None;Secure'
+});
+</script>
 <style>
   :root{
     --bg:#05070d;--bg2:#0a0e1a;
@@ -272,6 +296,26 @@
     .supportbtn .suptxt{display:none}.supportbtn{padding:8px 10px}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "LAUNCHPAD",
+  "url": "https://spacecommand.tech",
+  "description": "Live tracker of upcoming SpaceX launches with real-time countdowns and mission data",
+  "applicationCategory": "Utility",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Space Command",
+    "url": "https://spacecommand.tech"
+  }
+}
+</script>
 </head>
 <body>
 <div class="stars"></div>
@@ -595,7 +639,7 @@ function renderNext(){
         <div class="nmeta" style="margin-bottom:14px"><span>${fmtDate(l.net)} ${esc(t('local_time'))}</span></div>
         <div class="countdown" id="bigcd"></div>
       </div>
-      <div class="nextpatch">${patch?`<img src="${esc(patch)}" alt="patch" onerror="${IMGERR}"/>`:(img?`<img src="${esc(img)}" style="max-width:240px;border-radius:14px;opacity:.9" alt="" onerror="${IMGERR}"/>`:"")}</div>
+      <div class="nextpatch">${patch?`<img src="${esc(patch)}" alt="patch" loading="lazy" onerror="${IMGERR}"/>`:(img?`<img src="${esc(img)}" style="max-width:240px;border-radius:14px;opacity:.9" alt="" loading="lazy" onerror="${IMGERR}"/>`:"")}</div>
     </div>`;
   startBigCountdown(l.net);
 }
