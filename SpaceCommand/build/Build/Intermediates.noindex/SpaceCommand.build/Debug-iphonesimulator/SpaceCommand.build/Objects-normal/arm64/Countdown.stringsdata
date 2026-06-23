@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/Countdown.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "T- %lld%@ %lldh %lldm",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 115
+        }
+      }
+    ]
+  },
+  "version": 1
+}

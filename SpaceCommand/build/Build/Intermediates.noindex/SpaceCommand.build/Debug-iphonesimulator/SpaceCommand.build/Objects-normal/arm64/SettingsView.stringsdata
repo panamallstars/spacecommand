@@ -1,0 +1,48 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Français",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "English",
+        "location": {
+          "startingColumn": 67,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "Ouvrir Réglages",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "Activer les notifications",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "Tout annuler (%lld)",
+        "location": {
+          "startingColumn": 42,
+          "startingLine": 76
+        }
+      }
+    ]
+  },
+  "version": 1
+}

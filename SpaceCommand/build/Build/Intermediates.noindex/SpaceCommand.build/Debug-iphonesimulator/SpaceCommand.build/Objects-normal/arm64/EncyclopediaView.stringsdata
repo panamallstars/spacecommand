@@ -1,0 +1,24 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/EncyclopediaView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "ACTIVE",
+        "location": {
+          "startingColumn": 45,
+          "startingLine": 103
+        }
+      },
+      {
+        "comment": "",
+        "key": "RETIRED",
+        "location": {
+          "startingColumn": 56,
+          "startingLine": 103
+        }
+      }
+    ]
+  },
+  "version": 1
+}

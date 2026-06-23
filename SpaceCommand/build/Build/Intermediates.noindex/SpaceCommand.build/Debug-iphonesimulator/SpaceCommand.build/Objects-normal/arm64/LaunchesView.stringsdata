@@ -1,0 +1,56 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/LaunchesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Aucun lancement",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 19
+        }
+      },
+      {
+        "comment": "",
+        "key": "Les données n'ont pas pu être chargées. Peux-tu réessayer ?",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "SPACE COMMAND",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 198
+        }
+      },
+      {
+        "comment": "",
+        "key": "SpaceX launch tracker · live",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 202
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 252
+        }
+      }
+    ]
+  },
+  "version": 1
+}
