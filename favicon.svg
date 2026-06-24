@@ -1,22 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3ad6ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c6bff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
   <!-- Background -->
   <rect width="192" height="192" fill="#05070d"/>
 
-  <!-- Orbital ring symbol (simplified S/planet with rings) -->
-  <g transform="translate(96, 96)">
-    <!-- Outer glow -->
-    <circle cx="0" cy="0" r="68" fill="none" stroke="#3ad6ff" stroke-width="2" opacity="0.3"/>
+  <!-- Simple orbital ring -->
+  <circle cx="96" cy="96" r="65" fill="none" stroke="url(#grad)" stroke-width="8" opacity="0.9"/>
 
-    <!-- Main orbital path (top right ring) -->
-    <path d="M -20 -50 Q 40 -60 60 -20 Q 50 20 0 30" fill="none" stroke="#3ad6ff" stroke-width="6" stroke-linecap="round"/>
+  <!-- S-curve in the middle -->
+  <path d="M 60 96 Q 96 70 96 96 Q 96 122 132 96" fill="none" stroke="url(#grad)" stroke-width="6" stroke-linecap="round" opacity="0.95"/>
 
-    <!-- Central S-curve -->
-    <path d="M -35 -25 Q -10 0 0 15 Q 15 25 35 15" fill="none" stroke="#7c6bff" stroke-width="7" stroke-linecap="round"/>
-
-    <!-- Bottom ring segment -->
-    <path d="M -55 20 Q -20 50 35 45 Q 55 40 60 15" fill="none" stroke="#3ad6ff" stroke-width="5" stroke-linecap="round"/>
-
-    <!-- Top accent dot -->
-    <circle cx="0" cy="-50" r="3" fill="#3ad6ff"/>
-  </g>
+  <!-- Accent dot -->
+  <circle cx="96" cy="45" r="4" fill="#3ad6ff"/>
 </svg>
