@@ -289,6 +289,31 @@ gtag('config', 'G-JL8TH7G6V9', {
   footer a:hover{color:var(--accent)}
   .hidden{display:none!important}
 
+  /* ---- Notification button ---- */
+  .notifbtn{display:inline-flex;align-items:center;gap:7px;font-family:'Inter';font-weight:600;font-size:.78rem;color:var(--text);background:rgba(255,255,255,.07);border:1px solid var(--stroke-strong);padding:9px 16px;border-radius:11px;cursor:pointer;transition:.18s;margin-top:14px}
+  .notifbtn:hover{background:rgba(255,255,255,.13);border-color:var(--accent)}
+  .notifbtn.on{color:#04121d;background:linear-gradient(135deg,var(--accent),var(--accent2));border-color:transparent}
+  .notifbtn:disabled{opacity:.4;cursor:not-allowed}
+  .notif-toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--panel-solid);border:1px solid var(--stroke-strong);color:var(--text);padding:12px 24px;border-radius:14px;font-size:.85rem;font-weight:600;z-index:9999;pointer-events:none;opacity:0;transition:opacity .22s,transform .22s;white-space:nowrap}
+  .notif-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* ---- Past launches section ---- */
+  .past-section{margin:36px 0 0;padding-top:28px;border-top:1px solid var(--stroke)}
+  .past-head{display:flex;align-items:baseline;gap:12px;margin-bottom:18px}
+  .past-head h3{font-family:'Orbitron';font-size:1rem;font-weight:700;color:var(--text);letter-spacing:.04em}
+  .past-head span{font-size:.76rem;color:var(--muted)}
+  .past-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+  .past-card{position:relative;background:var(--panel);border:1px solid var(--stroke);border-radius:14px;overflow:hidden;cursor:pointer;transition:.18s;min-height:110px;display:flex;flex-direction:column;justify-content:flex-end}
+  .past-card:hover{border-color:var(--stroke-strong);transform:translateY(-2px)}
+  .past-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.22}
+  .past-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,19,32,.96) 50%,transparent)}
+  .past-patch{position:absolute;top:10px;right:10px;width:44px;height:44px;object-fit:contain;opacity:.85}
+  .past-body{position:relative;padding:12px 14px 14px}
+  .past-status{font-family:'JetBrains Mono';font-size:.65rem;font-weight:700;letter-spacing:.08em;color:var(--muted);margin-bottom:5px}
+  .past-status.ok{color:var(--go)}.past-status.ko{color:var(--hold)}
+  .past-name{font-size:.82rem;font-weight:700;line-height:1.25;margin-bottom:5px;max-width:calc(100% - 52px);color:var(--text)}
+  .past-meta{font-size:.7rem;color:var(--muted);display:flex;flex-direction:column;gap:2px}
+
   @media(max-width:760px){
     .nextgrid{grid-template-columns:1fr}.nextpatch{display:none}
     .mhead{flex-direction:column;align-items:flex-start}.mhead img.mpatch{width:70px;height:70px}
@@ -296,6 +321,7 @@ gtag('config', 'G-JL8TH7G6V9', {
     .rkgrid{grid-template-columns:1fr}.rkimg{min-height:180px}
     .brand small{display:none}
     .supportbtn .suptxt{display:none}.supportbtn{padding:8px 10px}
+    .past-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
   }
 </style>
 <script type="application/ld+json">
@@ -364,8 +390,16 @@ gtag('config', 'G-JL8TH7G6V9', {
       </div>
     </div>
     <div class="grid" id="grid"></div>
+    <div class="past-section" id="past-section" style="display:none">
+      <div class="past-head">
+        <h3 id="past-title-el">Récemment lancé</h3>
+        <span id="past-sub-el">derniers vols SpaceX</span>
+      </div>
+      <div class="past-grid" id="past-grid"></div>
+    </div>
   </div>
 </div>
+<div class="notif-toast" id="notif-toast"></div>
 
 <div id="view-ency" class="hidden">
   <div class="wrap encypage">
@@ -443,6 +477,16 @@ const I18N = {
     err_body:"L'API publique (Launch Library 2) limite le nombre de requêtes par heure.<br/>Réessaie dans un instant.",
     err_retry:"↻ Réessayer",
     dayunit:"j",
+    notif_btn_off:"🔕 Me notifier",
+    notif_btn_on:"🔔 Notifié",
+    notif_toast_on:"🔔 Alerte activée — T-24h & T-1h",
+    notif_toast_off:"🔕 Alerte désactivée",
+    notif_denied:"Notifications bloquées par le navigateur",
+    notif_unsupported:"Notifications non supportées",
+    notif_24h:"Lancement dans 24h",
+    notif_1h:"Lancement imminent — T-1h !",
+    past_title:"Récemment lancé",
+    past_sub:"derniers vols SpaceX",
   },
   en:{
     nav_launches:"Launches", nav_ency:"Encyclopedia",
@@ -494,6 +538,16 @@ const I18N = {
     err_body:"The public API (Launch Library 2) limits the number of requests per hour.<br/>Please try again shortly.",
     err_retry:"↻ Retry",
     dayunit:"d",
+    notif_btn_off:"🔕 Notify me",
+    notif_btn_on:"🔔 Notified",
+    notif_toast_on:"🔔 Alert set — T-24h & T-1h",
+    notif_toast_off:"🔕 Alert removed",
+    notif_denied:"Notifications blocked by browser",
+    notif_unsupported:"Notifications not supported",
+    notif_24h:"Launch in 24 hours",
+    notif_1h:"Launch imminent — T-1h!",
+    past_title:"Recently launched",
+    past_sub:"latest SpaceX flights",
   }
 };
 function lsGet(k){ try{return localStorage.getItem(k);}catch(e){return null;} }
@@ -573,6 +627,8 @@ async function load(){
   LAUNCHES=(data&&data.results?data.results:[]).filter(l=>(l.launch_service_provider&&l.launch_service_provider.name||"").includes("SpaceX"));
   dbg('SpaceX launches:',LAUNCHES.length);
   buildTabs(); renderNext(); render(); buildStats();
+  loadPast();
+  scheduleNotifs(LAUNCHES);
 }
 
 /* ============ STATS ============ */
@@ -782,11 +838,14 @@ function openModal(id){
     ${infos.map(v=>`<a class="lk" href="${esc(v.url)}" target="_blank" rel="noopener">↗ ${esc(v.title||v.source)}</a>`).join('')}
     ${l.pad&&l.pad.map_url?`<a class="lk" href="${esc(l.pad.map_url)}" target="_blank" rel="noopener">📍 ${esc(t('pad_map'))}</a>`:""}</div>`:"";
 
+  const notifOn=isNotifActive(l.id);
   document.getElementById('modal').innerHTML=`
     <button class="close" onclick="closeModal()" aria-label="close">×</button>
     <div class="mhero" style="background-image:url('${esc(img)}')"><div class="mveil"></div>
       <div class="mhead"><div><h2>${esc(l.name)}</h2>
-        <div class="mrk"><span style="color:${fam.color}">●</span> ${esc(fam.label)} · ${esc((l.status&&l.status.name)||"")}</div></div>
+        <div class="mrk"><span style="color:${fam.color}">●</span> ${esc(fam.label)} · ${esc((l.status&&l.status.name)||"")}</div>
+        ${l.net?`<button class="notifbtn ${notifOn?'on':''}" onclick="onNotifClick('${esc(l.id)}','${jsstr(l.name)}',this)">${notifOn?t('notif_btn_on'):t('notif_btn_off')}</button>`:''}
+        </div>
         ${patch?`<img class="mpatch" src="${esc(patch)}" alt="patch" onerror="${IMGERR}"/>`:""}</div></div>
     <div class="mbody">
       ${l.mission&&l.mission.description?`<div class="msection"><h4>${esc(t('m_mission'))}</h4><p class="mdesc">${esc(l.mission.description)}</p></div>`:""}
@@ -1032,6 +1091,121 @@ function buildEncy(){
   });
 }
 
+/* ============ NOTIFICATIONS ============ */
+const NOTIF_KEY='lp_notif_subs';
+function getNotifSubs(){ try{return JSON.parse(lsGet(NOTIF_KEY)||'{}')}catch(e){return{}} }
+function setNotifSubs(obj){ lsSet(NOTIF_KEY,JSON.stringify(obj)) }
+function isNotifActive(id){ return !!getNotifSubs()[id] }
+
+let _toastTimer=null;
+function showToast(msg){
+  const el=document.getElementById('notif-toast'); if(!el) return;
+  el.textContent=msg; el.classList.add('show');
+  if(_toastTimer) clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(()=>el.classList.remove('show'),3200);
+}
+
+function fireNotif(title,body){
+  if(Notification.permission!=='granted') return;
+  try{ new Notification(title,{body,icon:'/favicon.svg',tag:'launchpad'}); }catch(e){ dbg('notif fire err',e); }
+}
+
+function scheduleNotifs(launches){
+  if(!('Notification' in window)||Notification.permission!=='granted') return;
+  const subs=getNotifSubs(), now=Date.now();
+  const T24=864e5, T1=36e5;
+  launches.forEach(l=>{
+    if(!subs[l.id]||!l.net) return;
+    const net=new Date(l.net).getTime();
+    const name=(l.mission&&l.mission.name)||l.name;
+    const d24=net-T24-now, d1=net-T1-now;
+    if(d24>0) setTimeout(()=>fireNotif('🚀 '+t('notif_24h'), name+' · '+fmtDate(l.net)), d24);
+    if(d1>0)  setTimeout(()=>fireNotif('🔴 '+t('notif_1h'),  name+' · '+fmtDate(l.net)), d1);
+    else if(d24<=0&&net-now>0) fireNotif('🔴 '+t('notif_1h'), name+' · '+fmtDate(l.net));
+  });
+}
+
+async function onNotifClick(launchId,launchName,btn){
+  const subs=getNotifSubs();
+  if(subs[launchId]){
+    delete subs[launchId]; setNotifSubs(subs);
+    btn.className='notifbtn'; btn.innerHTML=t('notif_btn_off');
+    showToast(t('notif_toast_off')); return;
+  }
+  if(!('Notification' in window)){ showToast(t('notif_unsupported')); return; }
+  let perm=Notification.permission;
+  if(perm==='default') perm=await Notification.requestPermission();
+  if(perm!=='granted'){ showToast(t('notif_denied')); return; }
+  subs[launchId]={name:launchName,ts:Date.now()};
+  setNotifSubs(subs);
+  btn.className='notifbtn on'; btn.innerHTML=t('notif_btn_on');
+  showToast(t('notif_toast_on'));
+  scheduleNotifs(LAUNCHES);
+}
+
+/* ============ PAST LAUNCHES ============ */
+let PAST=[];
+const API_PAST=b=>`${b}/launches/previous/?search=SpaceX&limit=6&mode=list`;
+
+async function loadPast(){
+  try{
+    const r=await fetch(API_PAST(activeBase||BASE));
+    if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    PAST=(d.results||[]).filter(l=>(l.launch_service_provider&&l.launch_service_provider.name||"").includes("SpaceX"));
+    renderPast();
+  }catch(e){ dbg('past launches failed:',e.message); }
+}
+
+function renderPast(){
+  const sec=document.getElementById('past-section');
+  const grid=document.getElementById('past-grid');
+  if(!sec||!grid||!PAST.length) return;
+  const elT=document.getElementById('past-title-el'); if(elT) elT.textContent=t('past_title');
+  const elS=document.getElementById('past-sub-el'); if(elS) elS.textContent=t('past_sub');
+  grid.innerHTML=PAST.map(l=>{
+    const fam=classify(l.rocket&&l.rocket.configuration&&l.rocket.configuration.name);
+    const patch=patchOf(l), img=imgOf(l);
+    const sn=(l.status&&l.status.name||"").toLowerCase();
+    const ok=sn.includes('success'), ko=sn.includes('fail');
+    const abbr=l.status&&(l.status.abbrev||l.status.name)||'—';
+    return `<article class="past-card" onclick="openPast('${esc(l.id)}')">
+      ${img?`<div class="past-bg" style="background-image:url('${esc(img)}')"></div><div class="past-veil"></div>`:''}
+      ${patch?`<img class="past-patch" src="${esc(patch)}" alt="" loading="lazy" onerror="${IMGERR}"/>`:''}
+      <div class="past-body">
+        <div class="past-status ${ok?'ok':ko?'ko':''}">${ok?'✓':ko?'✗':'○'} ${esc(abbr)}</div>
+        <div class="past-name">${esc((l.mission&&l.mission.name)||l.name)}</div>
+        <div class="past-meta"><span style="color:${fam.color}">${esc(fam.label)}</span><span>${fmtDay(l.net)}</span></div>
+      </div></article>`;
+  }).join('');
+  sec.style.display='';
+}
+
+function openPast(id){
+  const l=PAST.find(x=>x.id===id); if(!l) return;
+  const fam=classify(l.rocket&&l.rocket.configuration&&l.rocket.configuration.name);
+  const patch=patchOf(l), img=imgOf(l);
+  document.getElementById('modal').innerHTML=`
+    <button class="close" onclick="closeModal()" aria-label="close">×</button>
+    <div class="mhero" style="background-image:url('${esc(img)}')"><div class="mveil"></div>
+      <div class="mhead"><div><h2>${esc(l.name)}</h2>
+        <div class="mrk"><span style="color:${fam.color}">●</span> ${esc(fam.label)} · ${esc((l.status&&l.status.name)||"")}</div></div>
+        ${patch?`<img class="mpatch" src="${esc(patch)}" alt="patch" onerror="${IMGERR}"/>`:""}</div></div>
+    <div class="mbody">
+      ${l.mission&&l.mission.description?`<div class="msection"><h4>${esc(t('m_mission'))}</h4><p class="mdesc">${esc(l.mission.description)}</p></div>`:''}
+      <div class="msection"><h4>${esc(t('m_keyfacts'))}</h4>
+        <div class="infogrid">
+          ${l.rocket&&l.rocket.configuration?`<div class="ibox"><span>${esc(t('if_rocket'))}</span><b>${esc(l.rocket.configuration.full_name||l.rocket.configuration.name)}</b></div>`:''}
+          ${l.mission&&l.mission.orbit?`<div class="ibox"><span>${esc(t('if_orbit'))}</span><b>${esc(l.mission.orbit.name)}</b></div>`:''}
+          ${l.pad&&l.pad.name?`<div class="ibox"><span>${esc(t('if_pad'))}</span><b>${esc(l.pad.name)}</b></div>`:''}
+          <div class="ibox"><span>${esc(t('if_liftoff'))}</span><b>${fmtDate(l.net)}</b></div>
+          <div class="ibox"><span>${esc(t('if_status'))}</span><b>${esc((l.status&&l.status.name)||'')}</b></div>
+        </div></div>
+    </div>`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
 /* ============ VIEWS & LANG ============ */
 function showView(v){
   currentView=v;
@@ -1047,6 +1221,7 @@ function setLang(l){
   applyStaticI18n();
   // re-render dynamic content
   if(LAUNCHES.length){ buildTabs(); renderNext(); render(); renderStats(); }
+  if(PAST.length) renderPast();
   if(currentView==='ency') buildEncy();
   if(openLaunchId){ openModal(openLaunchId); }
 }
