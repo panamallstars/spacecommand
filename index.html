@@ -665,24 +665,24 @@ async function load(){
 function renderStats(){
   const lsp=(LAUNCHES.find(l=>l.launch_service_provider&&l.launch_service_provider.total_launch_count)||{}).launch_service_provider;
   const f9cfg=LAUNCHES.map(l=>l.rocket&&l.rocket.configuration).find(c=>c&&/falcon 9/i.test(c.name||""));
-  const rec = statsRecord || {flights:"35", serial:"B1067"};
+  const rec = statsRecord || null;
   const cells=[
     {v:(lsp&&lsp.total_launch_count)??"—", l:t('stat_launches'), e:t('stat_since'), c:""},
-    {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_inrow',{n:"52"}), c:"v4"},
-    {v:rec.flights, l:t('stat_reuse'), e:t('stat_reuse_sub',{s:rec.serial||""}), c:"v2"},
+    {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_inrow',{n:(lsp&&lsp.successful_landings_streak)??"—"}), c:"v4"},
+    {v:rec?.flights??"—", l:t('stat_reuse'), e:t('stat_reuse_sub',{s:rec?.serial??"—"}), c:"v2"},
     {v:(f9cfg&&f9cfg.consecutive_successful_launches)??(lsp&&lsp.consecutive_successful_launches)??"—", l:t('stat_consec'), e:t('stat_consec_sub'), c:"v3"},
-    {v:"21j", l:t('stat_turn'), e:t('stat_turn_sub')+" (B1067)", c:"v5"},
+    {v:(rec&&rec.turnaround)??"—", l:t('stat_turn'), e:(rec?.serial?t('stat_turn_sub')+" ("+rec.serial+")":"—"), c:"v5"},
     {v:LAUNCHES.length, l:t('stat_upcoming'), e:t('stat_upcoming_sub'), c:""},
   ];
   document.getElementById('statstrip').innerHTML=cells.map(c=>`<div class="statc ${c.c}"><b>${esc(c.v)}</b><span>${esc(c.l)}</span><em>${esc(c.e)}</em></div>`).join('');
 }
 function renderStatsDash(){
-  const lsp=LAUNCHES.find(l=>l.launch_service_provider&&l.launch_service_provider.total_launch_count)?.launch_service_provider||{};
-  const totalLaunches=lsp.total_launch_count||695;
-  const successLaunches=lsp.successful_landings||640;
-  const successRate=totalLaunches>0?Math.round((successLaunches/totalLaunches)*100):0;
-  const starlinks=LAUNCHES.filter(l=>(l.name||"").includes("Starlink")).length;
-  const starlinkSats=starlinks*24;
+  const lsp=LAUNCHES.find(l=>l.launch_service_provider&&l.launch_service_provider.total_launch_count)?.launch_service_provider;
+  const totalLaunches=lsp?.total_launch_count;
+  const successLaunches=lsp?.successful_landings;
+  const successRate=totalLaunches&&successLaunches?Math.round((successLaunches/totalLaunches)*100):"—";
+  const starlinks_upcoming=LAUNCHES.filter(l=>(l.name||"").includes("Starlink")).length;
+  const starlinks_past=PAST.filter(l=>(l.name||"").includes("Starlink")&&(l.status?.name||"").toLowerCase().includes("success")).length;
   const now=new Date(), thisMonth=LAUNCHES.filter(l=>{
     const net=l.net?new Date(l.net):null;
     return net&&net.getMonth()===now.getMonth()&&net.getFullYear()===now.getFullYear();
@@ -690,9 +690,9 @@ function renderStatsDash(){
   const fh_count=LAUNCHES.filter(l=>(l.rocket?.configuration?.name||"").includes("Heavy")).length;
   const ss_count=LAUNCHES.filter(l=>(l.rocket?.configuration?.name||"").includes("Starship")).length;
   const stats=[
-    {v:totalLaunches,l:t('stat_launches'),u:"vols",d:t('stat_since'),highlight:true},
-    {v:successRate,l:"Taux de succès",u:"%",d:`${successLaunches} / ${totalLaunches} réussis`,highlight:false},
-    {v:starlinkSats,l:"Satellites lancés",u:"",d:`${starlinks} missions Starlink`,highlight:true},
+    {v:totalLaunches??"—",l:t('stat_launches'),u:"vols",d:t('stat_since'),highlight:true},
+    {v:successRate,l:"Taux de succès",u:successRate==="—"?"":"%" ,d:successLaunches&&totalLaunches?`${successLaunches} / ${totalLaunches} réussis`:"données indisponibles",highlight:false},
+    {v:starlinks_past??"—",l:"Starlink lancés",u:"missions",d:`${starlinks_past} réussites passées`,highlight:true},
     {v:thisMonth,l:"Ce mois",u:"lancements",d:"programmés à venir",highlight:false},
     {v:fh_count,l:"Falcon Heavy",u:"vols",d:"dans le calendrier",highlight:false},
     {v:ss_count,l:"Starship",u:"vols",d:"en développement",highlight:false},
