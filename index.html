@@ -683,6 +683,17 @@ function renderStatsDash(){
   const successRate=totalLaunches&&successLaunches?Math.round((successLaunches/totalLaunches)*100):"—";
   const starlinks_upcoming=LAUNCHES.filter(l=>(l.name||"").includes("Starlink")).length;
   const starlinks_past=PAST.filter(l=>(l.name||"").includes("Starlink")&&(l.status?.name||"").toLowerCase().includes("success")).length;
+  // Fetch complete Starlink history (all successful Starlink missions)
+  if(!window.starlinksHistorical) {
+    fetch(`${activeBase}/launches/?search=Starlink&limit=300&mode=list&ordering=-net`)
+      .then(r=>r.json()).then(d=>{
+        const successful=(d.results||[]).filter(l=>/success|go/i.test(l.status?.name||"")).length;
+        window.starlinksHistorical=successful||starlinks_past;
+        dbg('Starlink historical count:',window.starlinksHistorical);
+        renderStatsDash();
+      }).catch(()=>{window.starlinksHistorical=starlinks_past;});
+  }
+  const starlinkCount=window.starlinksHistorical||starlinks_past;
   const now=new Date(), thisMonth=LAUNCHES.filter(l=>{
     const net=l.net?new Date(l.net):null;
     return net&&net.getMonth()===now.getMonth()&&net.getFullYear()===now.getFullYear();
@@ -692,7 +703,7 @@ function renderStatsDash(){
   const stats=[
     {v:totalLaunches??"—",l:t('stat_launches'),u:"vols",d:t('stat_since'),highlight:true},
     {v:successRate,l:"Taux de succès",u:successRate==="—"?"":"%" ,d:successLaunches&&totalLaunches?`${successLaunches} / ${totalLaunches} réussis`:"données indisponibles",highlight:false},
-    {v:starlinks_past??"—",l:"Starlink lancés",u:"missions",d:`${starlinks_past} réussites passées`,highlight:true},
+    {v:starlinkCount??"—",l:"Starlink lancés",u:"missions",d:`${starlinkCount} réussites confirmées`,highlight:true},
     {v:thisMonth,l:"Ce mois",u:"lancements",d:"programmés à venir",highlight:false},
     {v:fh_count,l:"Falcon Heavy",u:"vols",d:"dans le calendrier",highlight:false},
     {v:ss_count,l:"Starship",u:"vols",d:"en développement",highlight:false},
