@@ -129,8 +129,7 @@ gtag('config', 'G-JL8TH7G6V9', {
   .searchbox input{background:transparent;border:none;color:#fff;font-family:'Inter';font-size:.86rem;outline:none;width:100%}
   .searchbox svg{flex:none;opacity:.6}
 
-  .statsdash{display:none;margin:48px 0;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  @media(min-width:1024px){.statsdash{display:grid}}
+  .statsdash{display:grid;margin:36px 0 0;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));padding:0 0 30px}
   .statcard{background:linear-gradient(135deg,var(--panel),rgba(20,28,48,.4));border:1px solid var(--stroke-strong);border-radius:20px;padding:28px 24px;backdrop-filter:blur(12px);position:relative;overflow:hidden}
   .statcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(58,214,255,.1),transparent 70%);pointer-events:none}
   .statcard .label{font-family:'JetBrains Mono';font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);margin-bottom:12px;display:block}
@@ -375,6 +374,7 @@ gtag('config', 'G-JL8TH7G6V9', {
       <nav class="nav">
         <button class="navbtn active" data-view="launches" data-i18n="nav_launches" onclick="showView('launches')">Lancements</button>
         <button class="navbtn" data-view="ency" data-i18n="nav_ency" onclick="showView('ency')">Encyclopédie</button>
+        <button class="navbtn" data-view="stats" data-i18n="nav_stats" onclick="showView('stats')">Statistiques</button>
       </nav>
       <a class="supportbtn" href="https://buymeacoffee.com/spacecommand" target="_blank" rel="noopener" data-i18n-title="support_tip" title="Soutenir le site">
         <span class="supicon">☕</span><span class="suptxt" data-i18n="support_btn">Soutenir</span>
@@ -396,7 +396,6 @@ gtag('config', 'G-JL8TH7G6V9', {
       <div class="statstrip" id="statstrip"></div>
       <div class="nextcard" id="nextcard" style="display:none"></div>
     </section>
-    <div class="statsdash" id="statsdash"></div>
     <div class="controls">
       <div class="tabs" id="tabs"></div>
       <div class="searchbox">
@@ -427,6 +426,17 @@ gtag('config', 'G-JL8TH7G6V9', {
   </div>
 </div>
 
+<div id="view-stats" class="hidden">
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker" data-i18n="s_kicker">// Mission analytics · statistiques globales</div>
+      <h1 data-i18n-html="s_title">Statistiques<br/>SpaceX</h1>
+      <p class="sub" data-i18n="s_sub">Vue d'ensemble des performances de SpaceX : lancements, taux de réussite, records de la flotte et tendances du programme spatial.</p>
+    </section>
+    <div class="statsdash" id="statsdash"></div>
+  </div>
+</div>
+
 <div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
 
 <footer><div class="wrap" id="footer-text" data-i18n-html="footer_html"></div></footer>
@@ -443,7 +453,7 @@ window.addEventListener('unhandledrejection', e=>err('promise rejection:', e.rea
 /* ============ I18N ============ */
 const I18N = {
   fr:{
-    nav_launches:"Lancements", nav_ency:"Encyclopédie",
+    nav_launches:"Lancements", nav_ency:"Encyclopédie", nav_stats:"Statistiques",
     support_btn:"Soutenir", support_tip:"Soutenir le site ☕",
     h_kicker:"// Mission control · données en temps réel",
     h_title:"Les prochains lancements<br/>de SpaceX",
@@ -451,6 +461,9 @@ const I18N = {
     e_kicker:"// Base de connaissances · specs & Wikipédia",
     e_title:"Encyclopédie<br/>des lanceurs",
     e_sub:"Les technologies de SpaceX en détail : caractéristiques techniques, performances et résumé encyclopédique mis à jour en direct depuis Wikipédia.",
+    s_kicker:"// Mission analytics · statistiques globales",
+    s_title:"Statistiques<br/>SpaceX",
+    s_sub:"Vue d'ensemble des performances de SpaceX : lancements, taux de réussite, records de la flotte et tendances du programme spatial.",
     search_ph:"Rechercher une mission, un orbite, un pad…",
     footer_html:"Données : <a href='https://thespacedevs.com' target='_blank' rel='noopener'>The Space Devs · Launch Library 2</a> &nbsp;·&nbsp; Résumés : <a href='https://fr.wikipedia.org' target='_blank' rel='noopener'>Wikipédia (CC BY-SA)</a> &nbsp;·&nbsp; Images & patches © SpaceX / agences respectives &nbsp;·&nbsp; LAUNCHPAD — projet non officiel, sans affiliation avec SpaceX.",
     tab_all:"Tous", tab_other:"Autre",
@@ -512,6 +525,9 @@ const I18N = {
     e_kicker:"// Knowledge base · specs & Wikipedia",
     e_title:"Launch vehicle<br/>encyclopedia",
     e_sub:"SpaceX's technologies in detail: technical characteristics, performance and an encyclopedic summary pulled live from Wikipedia.",
+    s_kicker:"// Mission analytics · global statistics",
+    s_title:"SpaceX<br/>Statistics",
+    s_sub:"Overview of SpaceX's performance: launches, success rate, fleet records and trends in the space program.",
     search_ph:"Search a mission, an orbit, a pad…",
     footer_html:"Data: <a href='https://thespacedevs.com' target='_blank' rel='noopener'>The Space Devs · Launch Library 2</a> &nbsp;·&nbsp; Summaries: <a href='https://en.wikipedia.org' target='_blank' rel='noopener'>Wikipedia (CC BY-SA)</a> &nbsp;·&nbsp; Images & patches © SpaceX / respective agencies &nbsp;·&nbsp; LAUNCHPAD — unofficial project, not affiliated with SpaceX.",
     tab_all:"All", tab_other:"Other",
@@ -685,7 +701,6 @@ function renderStatsDash(){
 }
 async function buildStats(){
   renderStats();
-  renderStatsDash();
   if(statsRecord!==undefined) return;
   try{
     const r=await fetch(`${activeBase}/launchers/?ordering=-flights&is_placeholder=false&limit=1&mode=list`);
@@ -1249,9 +1264,11 @@ function showView(v){
   currentView=v;
   document.getElementById('view-launches').classList.toggle('hidden',v!=='launches');
   document.getElementById('view-ency').classList.toggle('hidden',v!=='ency');
+  document.getElementById('view-stats').classList.toggle('hidden',v!=='stats');
   document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   window.scrollTo({top:0,behavior:'smooth'});
   if(v==='ency') buildEncy();
+  if(v==='stats') renderStatsDash();
 }
 function setLang(l){
   if(l===LANG) return;
@@ -1261,6 +1278,7 @@ function setLang(l){
   if(LAUNCHES.length){ buildTabs(); renderNext(); render(); renderStats(); }
   if(PAST.length) renderPast();
   if(currentView==='ency') buildEncy();
+  if(currentView==='stats') renderStatsDash();
   if(openLaunchId){ openModal(openLaunchId); }
 }
 
