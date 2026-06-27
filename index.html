@@ -657,8 +657,8 @@ async function load(){
     catch(e2){ err('both endpoints failed:',e2.message); return renderError(); } }
   LAUNCHES=(data&&data.results?data.results:[]).filter(l=>(l.launch_service_provider&&l.launch_service_provider.name||"").includes("SpaceX"));
   dbg('SpaceX launches:',LAUNCHES.length);
-  buildTabs(); renderNext(); render(); buildStats();
-  Promise.all([loadPast(), scheduleNotifs(LAUNCHES)]);
+  buildTabs(); renderNext(); render();
+  Promise.all([loadPast(), scheduleNotifs(LAUNCHES)]).then(()=>buildStats());
 }
 
 /* ============ STATS ============ */
@@ -671,7 +671,7 @@ function renderStats(){
     {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_inrow',{n:(lsp&&lsp.successful_landings_streak)??"—"}), c:"v4"},
     {v:rec?.flights??"—", l:t('stat_reuse'), e:t('stat_reuse_sub',{s:rec?.serial??"—"}), c:"v2"},
     {v:(f9cfg&&f9cfg.consecutive_successful_launches)??(lsp&&lsp.consecutive_successful_launches)??"—", l:t('stat_consec'), e:t('stat_consec_sub'), c:"v3"},
-    {v:(rec&&rec.turnaround)??"—", l:t('stat_turn'), e:(rec?.serial?t('stat_turn_sub')+" ("+rec.serial+")":"—"), c:"v5"},
+    {v:(rec?.turnaround)??"—", l:t('stat_turn'), e:(rec?.turnaroundSerial?t('stat_turn_sub')+" ("+rec.turnaroundSerial+")":"—"), c:"v5"},
     {v:LAUNCHES.length, l:t('stat_upcoming'), e:t('stat_upcoming_sub'), c:""},
   ];
   document.getElementById('statstrip').innerHTML=cells.map(c=>`<div class="statc ${c.c}"><b>${esc(c.v)}</b><span>${esc(c.l)}</span><em>${esc(c.e)}</em></div>`).join('');
@@ -703,10 +703,45 @@ async function buildStats(){
   renderStats();
   if(statsRecord!==undefined) return;
   try{
-    const r=await fetch(`${activeBase}/launchers/?ordering=-flights&is_placeholder=false&limit=1&mode=list`);
-    if(r.ok){ const d=await r.json(); const top=d.results&&d.results[0];
-      if(top&&top.flights){ statsRecord={flights:top.flights, serial:top.serial_number||""}; dbg('fleet leader:',statsRecord); renderStats(); } }
-  }catch(e){ dbg('record fetch failed:',e.message); }
+    // Calculate from LAUNCHES + PAST (detailed mode has full booster data)
+    const allLaunches=[...(PAST||[]), ...(LAUNCHES||[])].filter(l=>l.net).sort((a,b)=>new Date(a.net)-new Date(b.net));
+    const byBooster={};
+    allLaunches.forEach(l=>{
+      const stages=l.rocket?.launcher_stage;
+      if(!stages) return;
+      stages.forEach(st=>{
+        const sn=st.launcher?.serial_number;
+        if(sn){
+          if(!byBooster[sn]) byBooster[sn]={launches:[], flights:0};
+          byBooster[sn].launches.push({net:new Date(l.net), name:l.name});
+          byBooster[sn].flights++;
+        }
+      });
+    });
+    // Find booster with most flights
+    let maxFlights=0, fleetLeader="";
+    Object.entries(byBooster).forEach(([sn,data])=>{
+      if(data.flights>maxFlights){ maxFlights=data.flights; fleetLeader=sn; }
+    });
+    if(fleetLeader) statsRecord={flights:maxFlights, serial:fleetLeader};
+
+    // Find turnaround record (min days between consecutive launches)
+    let minTurnaround=Infinity, turnaroundSerial="";
+    Object.entries(byBooster).forEach(([sn,data])=>{
+      const launches=data.launches;
+      for(let i=1;i<launches.length;i++){
+        const gap=Math.floor((launches[i].net-launches[i-1].net)/(1000*60*60*24));
+        if(gap>0 && gap<minTurnaround){ minTurnaround=gap; turnaroundSerial=sn; }
+      }
+    });
+    if(minTurnaround!==Infinity){
+      if(!statsRecord) statsRecord={};
+      statsRecord.turnaround=minTurnaround+" j";
+      statsRecord.turnaroundSerial=turnaroundSerial;
+    }
+    dbg('stats calculated:',statsRecord);
+    renderStats();
+  }catch(e){ dbg('stats calculation failed:',e.message); }
 }
 
 /* ============ TABS ============ */
