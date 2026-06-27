@@ -4,6 +4,7 @@ struct LaunchesView: View {
     @StateObject private var vm = LaunchesViewModel()
     @EnvironmentObject var lang: LanguageStore
     @State private var selected: Launch?
+    @State private var showStats = false
 
     var body: some View {
         NavigationStack {
@@ -64,6 +65,13 @@ struct LaunchesView: View {
                 ToolbarItem(placement: .principal) {
                     BrandMark()
                 }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: { showStats = true }) {
+                        Image(systemName: "chart.bar.fill")
+                            .font(.title3)
+                            .foregroundColor(Palette.accent)
+                    }
+                }
             }
             .toolbarBackground(Palette.bg.opacity(0.85), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
@@ -72,6 +80,12 @@ struct LaunchesView: View {
             .sheet(item: $selected) { launch in
                 MissionDetailView(launch: launch)
                     .environmentObject(lang)
+            }
+            .sheet(isPresented: $showStats) {
+                if case .loaded(let launches) = vm.state {
+                    StatsView(launches: launches)
+                        .environmentObject(lang)
+                }
             }
         }
         .tint(Palette.accent)
