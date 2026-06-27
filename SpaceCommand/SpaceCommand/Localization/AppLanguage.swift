@@ -70,6 +70,7 @@ enum Strings {
         "stat_landings": "Atterrissages réussis", "stat_inrow": "{n} d'affilée",
         "stat_reuse": "Record réutilisation", "stat_reuse_sub": "Booster {s}",
         "stat_consec": "Vols réussis d'affilée", "stat_consec_sub": "Falcon 9",
+        "stat_turn": "Record turnaround", "stat_turn_sub": "Temps minimum",
         "stat_upcoming": "Lancements à venir", "stat_upcoming_sub": "au programme",
 
         "tab_all": "Tous", "tab_other": "Autre",
@@ -174,6 +175,7 @@ enum Strings {
         "stat_landings": "Successful landings", "stat_inrow": "{n} in a row",
         "stat_reuse": "Reuse record", "stat_reuse_sub": "Booster {s}",
         "stat_consec": "Consecutive successes", "stat_consec_sub": "Falcon 9",
+        "stat_turn": "Turnaround record", "stat_turn_sub": "Minimum gap",
         "stat_upcoming": "Upcoming launches", "stat_upcoming_sub": "scheduled",
 
         "tab_all": "All", "tab_other": "Other",

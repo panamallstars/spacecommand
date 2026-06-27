@@ -9,6 +9,10 @@ struct StatStrip: View {
             .first { ($0.totalLaunchCount ?? 0) > 0 }
     }
 
+    private var boosterStats: BoosterStats {
+        StatsCalculator.calculateBoosterStats(launches: launches)
+    }
+
     var body: some View {
         let columns = [GridItem(.adaptive(minimum: 140), spacing: 12)]
         LazyVGrid(columns: columns, spacing: 12) {
@@ -25,9 +29,9 @@ struct StatStrip: View {
                 accent: Palette.go
             )
             stat(
-                value: "35×",
+                value: "\(boosterStats.fleetLeaderFlights)×",
                 label: lang.t("stat_reuse"),
-                sub: lang.t("stat_reuse_sub", ["s": "B1067"]),
+                sub: lang.t("stat_reuse_sub", ["s": boosterStats.fleetLeader ?? "—"]),
                 accent: Palette.ss
             )
             stat(
@@ -35,6 +39,12 @@ struct StatStrip: View {
                 label: lang.t("stat_consec"),
                 sub: lang.t("stat_consec_sub"),
                 accent: Palette.accent2
+            )
+            stat(
+                value: boosterStats.turnaroundDays > 0 ? "\(boosterStats.turnaroundDays)j" : "—",
+                label: lang.t("stat_turn"),
+                sub: lang.t("stat_turn_sub") + (boosterStats.turnaroundBooster.map { " (\($0))" } ?? ""),
+                accent: Palette.accent
             )
             stat(
                 value: "\(launches.count)",
