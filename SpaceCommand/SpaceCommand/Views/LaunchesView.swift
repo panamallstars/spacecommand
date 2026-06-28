@@ -5,6 +5,7 @@ struct LaunchesView: View {
     @EnvironmentObject var lang: LanguageStore
     @State private var selected: Launch?
     @State private var showStats = false
+    @State private var showRecent = false
 
     var body: some View {
         NavigationStack {
@@ -66,10 +67,17 @@ struct LaunchesView: View {
                     BrandMark()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showStats = true }) {
-                        Image(systemName: "chart.bar.fill")
-                            .font(.title3)
-                            .foregroundColor(Palette.accent)
+                    HStack(spacing: 12) {
+                        Button(action: { showRecent = true }) {
+                            Image(systemName: "clock.fill")
+                                .font(.title3)
+                                .foregroundColor(Palette.accent)
+                        }
+                        Button(action: { showStats = true }) {
+                            Image(systemName: "chart.bar.fill")
+                                .font(.title3)
+                                .foregroundColor(Palette.accent)
+                        }
                     }
                 }
             }
@@ -84,6 +92,12 @@ struct LaunchesView: View {
             .sheet(isPresented: $showStats) {
                 if case .loaded(let launches) = vm.state {
                     StatsView(launches: launches)
+                        .environmentObject(lang)
+                }
+            }
+            .sheet(isPresented: $showRecent) {
+                if case .loaded(let launches) = vm.state {
+                    RecentLaunchesView(launches: launches)
                         .environmentObject(lang)
                 }
             }
