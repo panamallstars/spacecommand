@@ -93,6 +93,20 @@ struct StatsView: View {
                             detail: "\(starlinksCount) réussites confirmées",
                             highlight: true
                         )
+                        statCard(
+                            value: "628",
+                            unit: "récupérés",
+                            label: "LANDINGS BOOSTERS",
+                            detail: "628 / 641 tentatives (98%)",
+                            highlight: true
+                        )
+                        statCard(
+                            value: "55",
+                            unit: "refactorisés",
+                            label: "BOOSTERS RÉUTILISÉS",
+                            detail: "volé au moins 2 fois",
+                            highlight: false
+                        )
                     }
                     .padding(.horizontal)
                     .padding(.bottom, 20)
