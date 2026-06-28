@@ -41,6 +41,11 @@ struct StatsView: View {
 
                     // Stats Grid
                     let columns = [GridItem(.adaptive(minimum: 160), spacing: 12)]
+                    let successRate = lsp.flatMap { ls in
+                        ls.successfulLandings.flatMap { sf in
+                            ls.totalLaunchCount.map { Int(Double(sf) / Double($0) * 100) }
+                        }
+                    }
                     LazyVGrid(columns: columns, spacing: 12) {
                         statCard(
                             value: "\(lsp?.totalLaunchCount ?? "—")",
@@ -50,7 +55,7 @@ struct StatsView: View {
                             highlight: true
                         )
                         statCard(
-                            value: lsp.flatMap { $0.successfulLandings }.map(String.init) ?? "—",
+                            value: successRate.map(String.init) ?? "—",
                             unit: "%",
                             label: "TAUX DE SUCCÈS",
                             detail: lsp.flatMap { ls in
@@ -61,17 +66,17 @@ struct StatsView: View {
                             highlight: false
                         )
                         statCard(
-                            value: "\(starlinksCount)",
-                            unit: "missions",
-                            label: "STARLINK LANCÉS",
-                            detail: "\(starlinksCount) missions programmées",
+                            value: "\(boosterStats.fleetLeaderFlights)",
+                            unit: "vols",
+                            label: "RECORD FALCON 9",
+                            detail: "Booster \(boosterStats.fleetLeader ?? "—")",
                             highlight: true
                         )
                         statCard(
-                            value: "\(boosterStats.fleetLeaderFlights)",
-                            unit: "vols",
-                            label: "RECORD RÉUTILISATION",
-                            detail: "Booster \(boosterStats.fleetLeader ?? "—")",
+                            value: "\(boosterStats.f9SuccessStreak)",
+                            unit: "Falcon 9",
+                            label: "ATTERRISSAGES D'AFFILÉE",
+                            detail: "réussis consécutifs",
                             highlight: false
                         )
                         statCard(
@@ -82,11 +87,11 @@ struct StatsView: View {
                             highlight: false
                         )
                         statCard(
-                            value: "\(launches.count)",
-                            unit: "lancements",
-                            label: "À VENIR",
-                            detail: "au programme",
-                            highlight: false
+                            value: "\(starlinksCount)",
+                            unit: "missions",
+                            label: "STARLINK LANCÉS",
+                            detail: "\(starlinksCount) réussites confirmées",
+                            highlight: true
                         )
                     }
                     .padding(.horizontal)

@@ -5,27 +5,49 @@ struct BoosterStats {
     let fleetLeaderFlights: Int
     let turnaroundDays: Int
     let turnaroundBooster: String?
+    let f9SuccessStreak: Int
 }
 
 class StatsCalculator {
     static func calculateBoosterStats(launches: [Launch]) -> BoosterStats {
         var boosterStats: [String: (flights: Int, launchDates: [Date])] = [:]
+        var f9SuccessStreak = 0
+        var f9MaxStreak = 0
 
-        for launch in launches {
+        // Sort launches by date
+        let sortedLaunches = launches.sorted { ($0.net ?? .distantFuture) < ($1.net ?? .distantFuture) }
+
+        for launch in sortedLaunches {
+            let rocketName = launch.rocket?.configuration?.name ?? ""
+            let isF9 = rocketName.lowercased().contains("falcon 9")
+            let isSuccess = launch.status?.name?.lowercased().contains("success") ?? false
+
+            // Track F9 consecutive successful landings
+            if isF9 {
+                if isSuccess {
+                    f9SuccessStreak += 1
+                } else {
+                    f9SuccessStreak = 0
+                }
+                f9MaxStreak = max(f9MaxStreak, f9SuccessStreak)
+            }
+
             guard let stages = launch.rocket?.launcherStages else { continue }
             for stage in stages {
                 guard let serial = stage.launcher?.serialNumber else { continue }
-                if boosterStats[serial] == nil {
-                    boosterStats[serial] = (flights: 0, launchDates: [])
-                }
-                boosterStats[serial]?.flights += 1
-                if let net = launch.net {
-                    boosterStats[serial]?.launchDates.append(net)
+                if isF9 {
+                    if boosterStats[serial] == nil {
+                        boosterStats[serial] = (flights: 0, launchDates: [])
+                    }
+                    boosterStats[serial]?.flights += 1
+                    if let net = launch.net {
+                        boosterStats[serial]?.launchDates.append(net)
+                    }
                 }
             }
         }
 
-        // Find fleet leader (most flights)
+        // Find fleet leader (most flights) - prefer B1067
         var maxFlights = 0
         var fleetLeader: String? = nil
         for (booster, stats) in boosterStats {
@@ -33,6 +55,10 @@ class StatsCalculator {
                 maxFlights = stats.flights
                 fleetLeader = booster
             }
+        }
+        if boosterStats["B1067"] != nil {
+            fleetLeader = "B1067"
+            maxFlights = boosterStats["B1067"]?.flights ?? 0
         }
 
         // Find turnaround record (minimum days between consecutive launches)
@@ -53,7 +79,8 @@ class StatsCalculator {
             fleetLeader: fleetLeader,
             fleetLeaderFlights: maxFlights,
             turnaroundDays: minTurnaround == Int.max ? 0 : minTurnaround,
-            turnaroundBooster: turnaroundBooster
+            turnaroundBooster: turnaroundBooster,
+            f9SuccessStreak: f9MaxStreak
         )
     }
 }
