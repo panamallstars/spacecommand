@@ -25,7 +25,7 @@ struct StatStrip: View {
             stat(
                 value: "\(lsp?.successfulLandings.map(String.init) ?? "—")",
                 label: lang.t("stat_landings"),
-                sub: lang.t("stat_inrow", ["n": "\(lsp?.consecutiveSuccessfulLandings ?? 0)"]),
+                sub: "réussis",
                 accent: Palette.go
             )
             stat(
@@ -33,12 +33,6 @@ struct StatStrip: View {
                 label: lang.t("stat_reuse"),
                 sub: lang.t("stat_reuse_sub", ["s": boosterStats.fleetLeader ?? "—"]),
                 accent: Palette.ss
-            )
-            stat(
-                value: "\(lsp?.consecutiveSuccessfulLaunches.map(String.init) ?? "—")",
-                label: lang.t("stat_consec"),
-                sub: lang.t("stat_consec_sub"),
-                accent: Palette.accent2
             )
             stat(
                 value: boosterStats.turnaroundDays > 0 ? "\(boosterStats.turnaroundDays)j" : "—",
