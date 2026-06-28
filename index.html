@@ -375,6 +375,7 @@ gtag('config', 'G-JL8TH7G6V9', {
         <button class="navbtn active" data-view="launches" data-i18n="nav_launches" onclick="showView('launches')">Lancements</button>
         <button class="navbtn" data-view="ency" data-i18n="nav_ency" onclick="showView('ency')">Encyclopédie</button>
         <button class="navbtn" data-view="stats" data-i18n="nav_stats" onclick="showView('stats')">Statistiques</button>
+        <button class="navbtn" data-view="recent" data-i18n="nav_recent" onclick="showView('recent')">Récemment lancé</button>
       </nav>
       <a class="supportbtn" href="https://buymeacoffee.com/spacecommand" target="_blank" rel="noopener" data-i18n-title="support_tip" title="Soutenir le site">
         <span class="supicon">☕</span><span class="suptxt" data-i18n="support_btn">Soutenir</span>
@@ -437,6 +438,17 @@ gtag('config', 'G-JL8TH7G6V9', {
   </div>
 </div>
 
+<div id="view-recent" class="hidden">
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker" data-i18n="r_kicker">// Mission history · derniers vols</div>
+      <h1 data-i18n-html="r_title">Récemment<br/>lancé</h1>
+      <p class="sub" data-i18n="r_sub">Historique des dernières missions SpaceX : Falcon 9, Falcon Heavy et Starship. Explorez les résultats et performances de chaque vol.</p>
+    </section>
+    <div id="recent-list"></div>
+  </div>
+</div>
+
 <div class="overlay" id="overlay"><div class="modal" id="modal"></div></div>
 
 <footer><div class="wrap" id="footer-text" data-i18n-html="footer_html"></div></footer>
@@ -453,7 +465,8 @@ window.addEventListener('unhandledrejection', e=>err('promise rejection:', e.rea
 /* ============ I18N ============ */
 const I18N = {
   fr:{
-    nav_launches:"Lancements", nav_ency:"Encyclopédie", nav_stats:"Statistiques",
+    nav_launches:"Lancements", nav_ency:"Encyclopédie", nav_stats:"Statistiques", nav_recent:"Récemment lancé",
+    r_kicker:"// Mission history · derniers vols", r_title:"Récemment<br/>lancé", r_sub:"Historique des dernières missions SpaceX : Falcon 9, Falcon Heavy et Starship. Explorez les résultats et performances de chaque vol.",
     support_btn:"Soutenir", support_tip:"Soutenir le site ☕",
     h_kicker:"// Mission control · données en temps réel",
     h_title:"Les prochains lancements<br/>de SpaceX",
@@ -517,7 +530,8 @@ const I18N = {
     past_sub:"derniers vols SpaceX",
   },
   en:{
-    nav_launches:"Launches", nav_ency:"Encyclopedia",
+    nav_launches:"Launches", nav_ency:"Encyclopedia", nav_stats:"Statistics", nav_recent:"Recently Launched",
+    r_kicker:"// Mission history · latest flights", r_title:"Recently<br/>Launched", r_sub:"History of SpaceX's latest missions: Falcon 9, Falcon Heavy and Starship. Explore results and performance from each flight.",
     support_btn:"Support", support_tip:"Support this project ☕",
     h_kicker:"// Mission control · real-time data",
     h_title:"Upcoming SpaceX<br/>launches",
@@ -718,6 +732,23 @@ function renderStatsDash(){
     {v:"55",l:"Boosters réutilisés",u:"refactorisés",d:"volé au moins 2 fois",highlight:false},
   ];
   document.getElementById('statsdash').innerHTML=stats.map(s=>`<div class="statcard ${s.highlight?'highlight':''}"><span class="label">${esc(s.l)}</span><div class="value">${s.v}</div><span class="unit">${esc(s.u)}</span><div class="detail">${esc(s.d)}</div></div>`).join('');
+}
+function renderRecent(){
+  if(!PAST||!PAST.length) return;
+  const html=PAST.map(l=>{
+    const cls=classify(l.rocket?.configuration?.name||"");
+    const status=l.status?.name||"";
+    const date=fmtDate(l.net);
+    const patch=l.image?.image_url?.thumbnail||'';
+    return `<div class="launchcard" style="cursor:pointer" onclick="openModal('${esc(l.id)}')">
+      ${patch?`<img src="${esc(patch)}" alt="${esc(l.name)}" loading="lazy" onerror="this.style.display='none'">`:'<div style="background:var(--panel);aspect-ratio:4/5"></div>'}
+      <h3>${esc(l.name)}</h3>
+      <p><span class="chip" style="background:${cls.color}">${esc(cls.label)}</span></p>
+      <small>${esc(status)}</small>
+      <em>${date}</em>
+    </div>`;
+  }).join('');
+  document.getElementById('recent-list').innerHTML=`<div class="past-grid">${html}</div>`;
 }
 async function buildStats(){
   renderStats();
@@ -1300,6 +1331,7 @@ async function loadPast(){
     const d=await r.json();
     PAST=(d.results||[]);
     renderPast();
+    if(currentView==='recent') renderRecent();
   }catch(e){ dbg('past launches failed:',e.message); }
 }
 
@@ -1358,10 +1390,12 @@ function showView(v){
   document.getElementById('view-launches').classList.toggle('hidden',v!=='launches');
   document.getElementById('view-ency').classList.toggle('hidden',v!=='ency');
   document.getElementById('view-stats').classList.toggle('hidden',v!=='stats');
+  document.getElementById('view-recent').classList.toggle('hidden',v!=='recent');
   document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===v));
   window.scrollTo({top:0,behavior:'smooth'});
   if(v==='ency') buildEncy();
   if(v==='stats') renderStatsDash();
+  if(v==='recent') { if(!PAST.length) loadPast().then(()=>renderRecent()); else renderRecent(); }
 }
 function setLang(l){
   if(l===LANG) return;
@@ -1372,6 +1406,7 @@ function setLang(l){
   if(PAST.length) renderPast();
   if(currentView==='ency') buildEncy();
   if(currentView==='stats') renderStatsDash();
+  if(currentView==='recent') renderRecent();
   if(openLaunchId){ openModal(openLaunchId); }
 }
 
