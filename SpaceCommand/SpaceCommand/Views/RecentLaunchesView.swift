@@ -52,40 +52,83 @@ struct RecentLaunchesView: View {
     }
 
     private func recentCard(_ launch: Launch) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(launch.name ?? "Unknown")
-                .font(Font2.orbitron(12, weight: .semibold))
-                .foregroundColor(Palette.text)
-                .lineLimit(2)
-
-            let family = getRocketFamily(launch.rocket?.configuration?.name ?? "")
-            HStack(spacing: 6) {
-                Circle().fill(family.color).frame(width: 6, height: 6)
-                Text(family.label)
-                    .font(Font2.mono(9, weight: .medium))
-                    .foregroundColor(family.color)
+        ZStack(alignment: .bottomLeading) {
+            // Background image
+            if let imageUrl = launch.image?.image_url {
+                AsyncImage(url: URL(string: imageUrl)) { image in
+                    image
+                        .resizable()
+                        .scaledToFill()
+                } placeholder: {
+                    Color(Palette.panel)
+                }
+                .opacity(0.22)
+                .ignoresSafeArea()
             }
 
-            if let status = launch.status?.name {
-                Text(status)
-                    .font(Font2.mono(9))
-                    .foregroundColor(statusColor(status))
-                    .lineLimit(1)
-            }
+            // Gradient veil
+            LinearGradient(
+                gradient: Gradient(colors: [
+                    Color(red: 0.055, green: 0.074, blue: 0.125).opacity(0.96),
+                    Color(red: 0.055, green: 0.074, blue: 0.125).opacity(0.5)
+                ]),
+                startPoint: .bottom,
+                endPoint: .top
+            )
+            .ignoresSafeArea()
 
-            if let net = launch.net {
-                let dateStr = formatDate(net)
-                Text(dateStr)
-                    .font(Font2.mono(8))
-                    .foregroundColor(Palette.muted)
-                    .lineLimit(1)
+            VStack(alignment: .leading, spacing: 6) {
+                // Status
+                HStack(spacing: 4) {
+                    let status = launch.status?.name ?? ""
+                    let isSuccess = status.lowercased().contains("success")
+                    let isFailed = status.lowercased().contains("fail")
+
+                    Text(isSuccess ? "✓" : isFailed ? "✗" : "○")
+                        .font(Font2.mono(10, weight: .bold))
+                        .foregroundColor(isSuccess ? Palette.go : isFailed ? Palette.hold : Palette.muted)
+
+                    Text(launch.status?.abbrev ?? "")
+                        .font(Font2.mono(7, weight: .bold))
+                        .tracking(0.5)
+                        .foregroundColor(isSuccess ? Palette.go : isFailed ? Palette.hold : Palette.muted)
+                }
+                .lineLimit(1)
+
+                // Mission name
+                Text(launch.mission?.name ?? launch.name ?? "Unknown")
+                    .font(Font2.orbitron(11, weight: .semibold))
+                    .foregroundColor(Palette.text)
+                    .lineLimit(2)
+
+                // Rocket family & date
+                HStack(spacing: 8) {
+                    let family = getRocketFamily(launch.rocket?.configuration?.name ?? "")
+                    HStack(spacing: 4) {
+                        Text("●")
+                            .font(Font2.mono(8))
+                            .foregroundColor(family.color)
+                        Text(family.label)
+                            .font(Font2.mono(7, weight: .medium))
+                            .foregroundColor(family.color)
+                    }
+
+                    if let net = launch.net {
+                        Text(formatDate(net))
+                            .font(Font2.mono(7))
+                            .foregroundColor(Palette.muted)
+                    }
+                }
+                .lineLimit(1)
             }
+            .padding(12)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(12)
-        .background(Color(Palette.panel.withAlphaComponent(0.7)))
+        .frame(height: 110)
+        .background(Color(Palette.panel))
         .border(Palette.stroke, width: 1)
-        .cornerRadius(12)
+        .cornerRadius(14)
+        .clipped()
     }
 
     private func getRocketFamily(_ name: String) -> (label: String, color: Color) {
