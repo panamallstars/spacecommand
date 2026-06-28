@@ -712,7 +712,6 @@ function renderStatsDash(){
     {v:totalLaunches??"—",l:t('stat_launches'),u:"vols",d:t('stat_since'),highlight:true},
     {v:successRate,l:"Taux de succès",u:successRate==="—"?"":"%" ,d:successLaunches&&totalLaunches?`${successLaunches} / ${totalLaunches} réussis`:"données indisponibles",highlight:false},
     {v:statsRecord?.flights??"—",l:"Record Falcon 9",u:"vols",d:`Booster ${statsRecord?.serial??"—"}`,highlight:true},
-    {v:statsRecord?.f9streak??"—",l:"Atterrissages d'affilée",u:"Falcon 9",d:"réussis consécutifs",highlight:false},
     {v:statsRecord?.turnaround??"—",l:"Record turnaround",u:"",d:`Booster ${statsRecord?.turnaroundSerial??"—"}`,highlight:false},
     {v:starlinkCount??"—",l:"Starlink lancés",u:"missions",d:`${starlinkCount} réussites confirmées`,highlight:true},
     {v:"628",l:"Récupérations boosters",u:"réussis",d:"628 / 641 tentatives (98%)",highlight:true},

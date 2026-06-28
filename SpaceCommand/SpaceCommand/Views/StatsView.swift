@@ -73,13 +73,6 @@ struct StatsView: View {
                             highlight: true
                         )
                         statCard(
-                            value: "\(boosterStats.f9SuccessStreak)",
-                            unit: "Falcon 9",
-                            label: "ATTERRISSAGES D'AFFILÉE",
-                            detail: "réussis consécutifs",
-                            highlight: false
-                        )
-                        statCard(
                             value: boosterStats.turnaroundDays > 0 ? "\(boosterStats.turnaroundDays)" : "—",
                             unit: boosterStats.turnaroundDays > 0 ? "jours" : "",
                             label: "RECORD TURNAROUND",
