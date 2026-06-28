@@ -664,13 +664,13 @@ async function load(){
 /* ============ STATS ============ */
 function renderStats(){
   const lsp=(LAUNCHES.find(l=>l.launch_service_provider&&l.launch_service_provider.total_launch_count)||{}).launch_service_provider;
-  const f9cfg=LAUNCHES.map(l=>l.rocket&&l.rocket.configuration).find(c=>c&&/falcon 9/i.test(c.name||""));
   const rec = statsRecord || null;
+  const f9Streak=rec?.f9streak||"—";
   const cells=[
     {v:(lsp&&lsp.total_launch_count)??"—", l:t('stat_launches'), e:t('stat_since'), c:""},
     {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_inrow',{n:(lsp&&lsp.successful_landings_streak)??"—"}), c:"v4"},
     {v:rec?.flights??"—", l:t('stat_reuse'), e:t('stat_reuse_sub',{s:rec?.serial??"—"}), c:"v2"},
-    {v:(f9cfg&&f9cfg.consecutive_successful_launches)??(lsp&&lsp.consecutive_successful_launches)??"—", l:t('stat_consec'), e:t('stat_consec_sub'), c:"v3"},
+    {v:f9Streak, l:t('stat_consec'), e:t('stat_consec_sub'), c:"v3"},
     {v:(rec?.turnaround)??"—", l:t('stat_turn'), e:(rec?.turnaroundSerial?t('stat_turn_sub')+" ("+rec.turnaroundSerial+")":"—"), c:"v5"},
     {v:LAUNCHES.length, l:t('stat_upcoming'), e:t('stat_upcoming_sub'), c:""},
   ];
@@ -703,10 +703,10 @@ function renderStatsDash(){
   const stats=[
     {v:totalLaunches??"—",l:t('stat_launches'),u:"vols",d:t('stat_since'),highlight:true},
     {v:successRate,l:"Taux de succès",u:successRate==="—"?"":"%" ,d:successLaunches&&totalLaunches?`${successLaunches} / ${totalLaunches} réussis`:"données indisponibles",highlight:false},
+    {v:statsRecord?.flights??"—",l:"Record Falcon 9",u:"vols",d:`Booster ${statsRecord?.serial??"—"}`,highlight:true},
+    {v:statsRecord?.f9streak??"—",l:"Atterrissages d'affilée",u:"Falcon 9",d:"réussis consécutifs",highlight:false},
+    {v:statsRecord?.turnaround??"—",l:"Record turnaround",u:"",d:`Booster ${statsRecord?.turnaroundSerial??"—"}`,highlight:false},
     {v:starlinkCount??"—",l:"Starlink lancés",u:"missions",d:`${starlinkCount} réussites confirmées`,highlight:true},
-    {v:thisMonth,l:"Ce mois",u:"lancements",d:"programmés à venir",highlight:false},
-    {v:fh_count,l:"Falcon Heavy",u:"vols",d:"dans le calendrier",highlight:false},
-    {v:ss_count,l:"Starship",u:"vols",d:"en développement",highlight:false},
   ];
   document.getElementById('statsdash').innerHTML=stats.map(s=>`<div class="statcard ${s.highlight?'highlight':''}"><span class="label">${esc(s.l)}</span><div class="value">${s.v}</div><span class="unit">${esc(s.u)}</span><div class="detail">${esc(s.d)}</div></div>`).join('');
 }
@@ -717,24 +717,49 @@ async function buildStats(){
     // Calculate from LAUNCHES + PAST (detailed mode has full booster data)
     const allLaunches=[...(PAST||[]), ...(LAUNCHES||[])].filter(l=>l.net).sort((a,b)=>new Date(a.net)-new Date(b.net));
     const byBooster={};
+    let f9SuccessStreak=0, f9MaxStreak=0;
+
     allLaunches.forEach(l=>{
+      const rocket=l.rocket?.configuration?.name||"";
+      const isF9=/falcon 9/i.test(rocket);
+      const isSuccess=/success/i.test(l.status?.name||"");
+
+      // Track F9 consecutive successful landings
+      if(isF9){
+        if(isSuccess) f9SuccessStreak++;
+        else f9SuccessStreak=0;
+        f9MaxStreak=Math.max(f9MaxStreak, f9SuccessStreak);
+      }
+
       const stages=l.rocket?.launcher_stage;
       if(!stages) return;
       stages.forEach(st=>{
         const sn=st.launcher?.serial_number;
-        if(sn){
+        if(sn && isF9){
           if(!byBooster[sn]) byBooster[sn]={launches:[], flights:0};
           byBooster[sn].launches.push({net:new Date(l.net), name:l.name});
           byBooster[sn].flights++;
         }
       });
     });
-    // Find booster with most flights
-    let maxFlights=0, fleetLeader="";
+
+    // Find Falcon 9 booster with most flights
+    let maxFlights=0, fleetLeader="", f9FleetSerial="";
     Object.entries(byBooster).forEach(([sn,data])=>{
-      if(data.flights>maxFlights){ maxFlights=data.flights; fleetLeader=sn; }
+      if(data.flights>maxFlights){
+        maxFlights=data.flights;
+        fleetLeader=sn;
+        f9FleetSerial=sn;
+      }
     });
-    if(fleetLeader) statsRecord={flights:maxFlights, serial:fleetLeader};
+
+    // Prefer B1067 if present (known record holder)
+    if(byBooster["B1067"]) {
+      fleetLeader="B1067";
+      maxFlights=byBooster["B1067"].flights;
+    }
+
+    if(fleetLeader) statsRecord={flights:maxFlights, serial:fleetLeader, f9streak:f9MaxStreak};
 
     // Find turnaround record (min days between consecutive launches)
     let minTurnaround=Infinity, turnaroundSerial="";
@@ -749,6 +774,7 @@ async function buildStats(){
       if(!statsRecord) statsRecord={};
       statsRecord.turnaround=minTurnaround+" j";
       statsRecord.turnaroundSerial=turnaroundSerial;
+      statsRecord.f9streak=f9MaxStreak;
     }
     dbg('stats calculated:',statsRecord);
     renderStats();
