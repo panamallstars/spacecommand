@@ -472,7 +472,7 @@ const I18N = {
     cd_tbd:"À confirmer", cd_inprogress:"EN COURS / RÉCENT", cd_launched:"Lancé",
     cd_days:"Jours", cd_hours:"Heures", cd_min:"Min", cd_sec:"Sec",
     stat_launches:"Lancements SpaceX", stat_since:"depuis 2006",
-    stat_landings:"Atterrissages réussis", stat_inrow:"{n} d'affilée",
+    stat_landings:"Atterrissages réussis", stat_landings_sub:"réussis", stat_inrow:"{n} d'affilée",
     stat_reuse:"Record réutilisation", stat_reuse_sub:"Booster {s}",
     stat_consec:"Vols réussis d'affilée", stat_consec_sub:"Falcon 9",
     stat_turn:"Record turnaround", stat_turn_sub:"même booster",
@@ -536,7 +536,7 @@ const I18N = {
     cd_tbd:"TBD", cd_inprogress:"IN PROGRESS / RECENT", cd_launched:"Launched",
     cd_days:"Days", cd_hours:"Hours", cd_min:"Min", cd_sec:"Sec",
     stat_launches:"SpaceX launches", stat_since:"since 2006",
-    stat_landings:"Successful landings", stat_inrow:"{n} in a row",
+    stat_landings:"Successful landings", stat_landings_sub:"successful", stat_inrow:"{n} in a row",
     stat_reuse:"Reuse record", stat_reuse_sub:"Booster {s}",
     stat_consec:"Consecutive successes", stat_consec_sub:"Falcon 9",
     stat_turn:"Fastest turnaround", stat_turn_sub:"same booster",
@@ -665,12 +665,10 @@ async function load(){
 function renderStats(){
   const lsp=(LAUNCHES.find(l=>l.launch_service_provider&&l.launch_service_provider.total_launch_count)||{}).launch_service_provider;
   const rec = statsRecord || null;
-  const f9Streak=rec?.f9streak||"—";
   const cells=[
     {v:(lsp&&lsp.total_launch_count)??"—", l:t('stat_launches'), e:t('stat_since'), c:""},
-    {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_inrow',{n:(lsp&&lsp.successful_landings_streak)??"—"}), c:"v4"},
+    {v:(lsp&&lsp.successful_landings)??"—", l:t('stat_landings'), e:t('stat_landings_sub'), c:"v4"},
     {v:rec?.flights??"—", l:t('stat_reuse'), e:t('stat_reuse_sub',{s:rec?.serial??"—"}), c:"v2"},
-    {v:f9Streak, l:t('stat_consec'), e:t('stat_consec_sub'), c:"v3"},
     {v:(rec?.turnaround)??"—", l:t('stat_turn'), e:(rec?.turnaroundSerial?t('stat_turn_sub')+" ("+rec.turnaroundSerial+")":"—"), c:"v5"},
     {v:LAUNCHES.length, l:t('stat_upcoming'), e:t('stat_upcoming_sub'), c:""},
   ];
