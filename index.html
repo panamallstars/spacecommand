@@ -715,6 +715,8 @@ function renderStatsDash(){
     {v:statsRecord?.f9streak??"—",l:"Atterrissages d'affilée",u:"Falcon 9",d:"réussis consécutifs",highlight:false},
     {v:statsRecord?.turnaround??"—",l:"Record turnaround",u:"",d:`Booster ${statsRecord?.turnaroundSerial??"—"}`,highlight:false},
     {v:starlinkCount??"—",l:"Starlink lancés",u:"missions",d:`${starlinkCount} réussites confirmées`,highlight:true},
+    {v:"628",l:"Récupérations boosters",u:"réussis",d:"628 / 641 tentatives (98%)",highlight:true},
+    {v:"55",l:"Boosters réutilisés",u:"refactorisés",d:"volé au moins 2 fois",highlight:false},
   ];
   document.getElementById('statsdash').innerHTML=stats.map(s=>`<div class="statcard ${s.highlight?'highlight':''}"><span class="label">${esc(s.l)}</span><div class="value">${s.v}</div><span class="unit">${esc(s.u)}</span><div class="detail">${esc(s.d)}</div></div>`).join('');
 }
