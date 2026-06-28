@@ -736,17 +736,19 @@ function renderStatsDash(){
 function renderRecent(){
   if(!PAST||!PAST.length) return;
   const html=PAST.map(l=>{
-    const cls=classify(l.rocket?.configuration?.name||"");
-    const status=l.status?.name||"";
-    const date=fmtDate(l.net);
-    const patch=l.image?.image_url?.thumbnail||'';
-    return `<div class="launchcard" style="cursor:pointer" onclick="openModal('${esc(l.id)}')">
-      ${patch?`<img src="${esc(patch)}" alt="${esc(l.name)}" loading="lazy" onerror="this.style.display='none'">`:'<div style="background:var(--panel);aspect-ratio:4/5"></div>'}
-      <h3>${esc(l.name)}</h3>
-      <p><span class="chip" style="background:${cls.color}">${esc(cls.label)}</span></p>
-      <small>${esc(status)}</small>
-      <em>${date}</em>
-    </div>`;
+    const fam=classify(l.rocket&&l.rocket.configuration&&l.rocket.configuration.name);
+    const patch=patchOf(l), img=imgOf(l);
+    const sn=(l.status&&l.status.name||"").toLowerCase();
+    const ok=sn.includes('success'), ko=sn.includes('fail');
+    const abbr=l.status&&(l.status.abbrev||l.status.name)||'—';
+    return `<article class="past-card" onclick="openModal('${esc(l.id)}')">
+      ${img?`<div class="past-bg" style="background-image:url('${esc(img)}')"></div><div class="past-veil"></div>`:''}
+      ${patch?`<img class="past-patch" src="${esc(patch)}" alt="" loading="lazy" onerror="${IMGERR}"/>`:''}
+      <div class="past-body">
+        <div class="past-status ${ok?'ok':ko?'ko':''}">${ok?'✓':ko?'✗':'○'} ${esc(abbr)}</div>
+        <div class="past-name">${esc((l.mission&&l.mission.name)||l.name)}</div>
+        <div class="past-meta"><span style="color:${fam.color}">●</span> ${esc(fam.label)}<span style="margin-left:8px">${fmtDay(l.net)}</span></div>
+      </div></article>`;
   }).join('');
   document.getElementById('recent-list').innerHTML=`<div class="past-grid">${html}</div>`;
 }
