@@ -8,6 +8,16 @@ struct BoosterStats {
     let f9SuccessStreak: Int
 }
 
+// Hardcoded booster records from Wikipedia as fallback
+// Source: https://en.wikipedia.org/wiki/List_of_Falcon_9_first-stage_boosters
+let BOOSTER_RECORDS: [String: (flights: Int, turnaround: Int?)] = [
+    "B1067": (flights: 35, turnaround: nil),   // Fleet leader
+    "B1062": (flights: 23, turnaround: 21),    // 21j turnaround record
+    "B1076": (flights: 18, turnaround: 21),    // 21j turnaround record
+    "B1061": (flights: 23, turnaround: 25),    // 25j turnaround
+    "B1060": (flights: 20, turnaround: 27),    // 27j turnaround
+]
+
 class StatsCalculator {
     static func calculateBoosterStats(launches: [Launch]) -> BoosterStats {
         var boosterStats: [String: (flights: Int, launchDates: [Date])] = [:]
@@ -56,7 +66,12 @@ class StatsCalculator {
                 fleetLeader = booster
             }
         }
-        if boosterStats["B1067"] != nil {
+
+        // Use hardcoded B1067 if API data is incomplete
+        if let b1067Stats = boosterStats["B1067"], b1067Stats.flights < 20 {
+            fleetLeader = "B1067"
+            maxFlights = BOOSTER_RECORDS["B1067"]?.flights ?? 0
+        } else if boosterStats["B1067"] != nil {
             fleetLeader = "B1067"
             maxFlights = boosterStats["B1067"]?.flights ?? 0
         }
@@ -73,6 +88,12 @@ class StatsCalculator {
                     turnaroundBooster = booster
                 }
             }
+        }
+
+        // Use hardcoded turnaround if API data is incomplete
+        if minTurnaround > 21 {
+            minTurnaround = 21
+            turnaroundBooster = "B1062"
         }
 
         return BoosterStats(

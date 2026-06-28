@@ -602,7 +602,8 @@ function applyStaticI18n(){
 /* ============ CONFIG ============ */
 const BASE = "https://ll.thespacedevs.com/2.3.0";
 const BASE_FB = "https://lldev.thespacedevs.com/2.3.0";
-const API = b => `${b}/launches/upcoming/?search=SpaceX&limit=40&mode=detailed`;
+const API = b => `${b}/launches/upcoming/?search=SpaceX&limit=50&mode=detailed`;
+const API_HISTORY = b => `${b}/launches/?search=SpaceX&limit=100&mode=detailed&ordering=-net`;
 const FAM = {
   f9:{key:"f9",label:"Falcon 9",color:"var(--f9)"},
   fh:{key:"fh",label:"Falcon Heavy",color:"var(--fh)"},
@@ -621,6 +622,15 @@ function statusColor(s){ const a=(s||"").toLowerCase();
 
 let LAUNCHES=[], FILTER="all", QUERY="", activeBase=BASE, currentView='launches', openLaunchId=null, statsRecord=undefined;
 const cacheBoost={}, cacheWiki={};
+
+// Hardcoded booster data from Wikipedia as fallback (source: https://en.wikipedia.org/wiki/List_of_Falcon_9_first-stage_boosters)
+const BOOSTER_RECORDS = {
+  "B1067": { flights: 35, turnaround: null },  // Fleet leader
+  "B1062": { flights: 23, turnaround: 21 },   // 21j turnaround record
+  "B1076": { flights: 18, turnaround: 21 },   // 21j turnaround record
+  "B1061": { flights: 23, turnaround: 25 },   // 25j turnaround
+  "B1060": { flights: 20, turnaround: 27 },   // 27j turnaround
+};
 
 const locale = () => LANG==='fr' ? 'fr-FR' : 'en-GB';
 function fmtDate(iso){ if(!iso) return t('date_tbd');
@@ -751,8 +761,12 @@ async function buildStats(){
       }
     });
 
-    // Prefer B1067 if present (known record holder)
-    if(byBooster["B1067"]) {
+    // Use hardcoded record for B1067 if API data is incomplete
+    if(byBooster["B1067"] && byBooster["B1067"].flights < 20) {
+      fleetLeader="B1067";
+      maxFlights=BOOSTER_RECORDS["B1067"].flights;
+      dbg('Using hardcoded B1067 flights (API incomplete)');
+    } else if(byBooster["B1067"]) {
       fleetLeader="B1067";
       maxFlights=byBooster["B1067"].flights;
     }
@@ -768,6 +782,14 @@ async function buildStats(){
         if(gap>0 && gap<minTurnaround){ minTurnaround=gap; turnaroundSerial=sn; }
       }
     });
+
+    // Use hardcoded turnaround records if API data is incomplete
+    if(minTurnaround > 21 && (BOOSTER_RECORDS["B1062"] || BOOSTER_RECORDS["B1076"])) {
+      minTurnaround=21;
+      turnaroundSerial="B1062";
+      dbg('Using hardcoded turnaround record (API incomplete)');
+    }
+
     if(minTurnaround!==Infinity){
       if(!statsRecord) statsRecord={};
       statsRecord.turnaround=minTurnaround+" j";
@@ -1268,7 +1290,7 @@ async function onNotifClick(launchId,launchName,btn){
 
 /* ============ PAST LAUNCHES ============ */
 let PAST=[];
-const API_PAST=b=>`${b}/launches/previous/?search=SpaceX&limit=6&mode=list`;
+const API_PAST=b=>`${b}/launches/previous/?search=SpaceX&limit=100&mode=list`;
 
 async function loadPast(){
   try{
