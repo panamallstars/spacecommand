@@ -15,7 +15,7 @@ struct StatsView: View {
     }
 
     private var starlinksCount: Int {
-        launches.filter { ($0.name ?? "").contains("Starlink") }.count
+        launches.filter { $0.name.contains("Starlink") }.count
     }
 
     var body: some View {
@@ -29,10 +29,10 @@ struct StatsView: View {
                             .tracking(1.2)
                             .foregroundColor(Palette.faint)
                         Text("Statistiques\nSpaceX")
-                            .font(Font2.display(36, weight: .heavy))
+                            .font(Font2.orbitron(36, weight: .heavy))
                             .foregroundColor(Palette.text)
                         Text("Vue d'ensemble des performances de SpaceX : lancements, taux de réussite, records de la flotte et tendances du programme spatial.")
-                            .font(Font2.body)
+                            .font(Font2.body(14))
                             .foregroundColor(Palette.muted)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -48,7 +48,7 @@ struct StatsView: View {
                     }
                     LazyVGrid(columns: columns, spacing: 12) {
                         statCard(
-                            value: "\(lsp?.totalLaunchCount ?? "—")",
+                            value: (lsp?.totalLaunchCount).map(String.init) ?? "—",
                             unit: "vols",
                             label: "LANCEMENTS SPACEX",
                             detail: "depuis 2006",
@@ -125,7 +125,7 @@ struct StatsView: View {
                 .font(Font2.mono(9, weight: .medium))
                 .tracking(1.2)
                 .foregroundColor(Palette.faint)
-            HStack(alignment: .baseline, spacing: 4) {
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(value)
                     .font(Font2.mono(32, weight: .heavy))
                     .foregroundColor(highlight ? Palette.accent : Palette.text)
@@ -140,7 +140,7 @@ struct StatsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .background(Color(Palette.panel.withAlphaComponent(0.7)))
+        .background(Palette.panel.opacity(0.7))
         .border(highlight ? Palette.accent : Palette.stroke, width: 1)
         .cornerRadius(14)
     }

@@ -12,41 +12,58 @@ final class LaunchesViewModel: ObservableObject {
     @Published var state: State = .loading
     @Published var filter: RocketFamily? = nil
     @Published var query: String = ""
+    @Published var lastUpdated: Date?
+    @Published var isStale = false
+    @Published var isRefreshing = false
 
     private var loadTask: Task<Void, Never>?
 
     init() {
-        // Load bootstrap data immediately
-        let sorted = BootstrapData.launches.sorted { ($0.net ?? .distantFuture) < ($1.net ?? .distantFuture) }
-        state = .loaded(sorted)
+        // Show bootstrap data instantly, then refresh from network/cache in background
+        state = .loaded(Self.upcoming(BootstrapData.launches))
 
-        // Try to fetch fresh data in background
-        Task {
-            do {
-                let launches = try await APIClient.shared.upcomingLaunches()
-                state = .loaded(launches.sorted { ($0.net ?? .distantFuture) < ($1.net ?? .distantFuture) })
-            } catch {
-                // Keep bootstrap data on error, don't show error state
-            }
-        }
+        Task { await load() }
     }
 
-    func load() async {
-        loadTask?.cancel()
-        state = .loading
+    /// Sorted by date, keeping only launches still relevant
+    /// (future, TBD, or within the 3 h "in progress" window).
+    private static func upcoming(_ list: [Launch]) -> [Launch] {
+        let cutoff = Date().addingTimeInterval(-10800)
+        return list
+            .filter { $0.net.map { $0 > cutoff } ?? true }
+            .sorted { ($0.net ?? .distantFuture) < ($1.net ?? .distantFuture) }
+    }
 
-        loadTask = Task {
+    /// Refreshes the launch list. Existing data stays on screen while
+    /// the request is in flight; the error state only appears when there
+    /// is nothing at all to show.
+    func load(force: Bool = false) async {
+        loadTask?.cancel()
+        isRefreshing = true
+        defer { isRefreshing = false }
+
+        let task = Task {
             do {
-                let launches = try await APIClient.shared.upcomingLaunches()
+                let feed = try await APIClient.shared.upcomingLaunches(forceRefresh: force)
                 if !Task.isCancelled {
-                    state = .loaded(launches.sorted { ($0.net ?? .distantFuture) < ($1.net ?? .distantFuture) })
+                    state = .loaded(Self.upcoming(feed.launches))
+                    lastUpdated = feed.updatedAt
+                    isStale = feed.isStale
                 }
             } catch {
                 if !Task.isCancelled {
-                    state = .error
+                    // Keep whatever we already have; only surface the error screen
+                    // when there is no data at all.
+                    if launches.isEmpty {
+                        state = .error
+                    } else {
+                        isStale = true
+                    }
                 }
             }
         }
+        loadTask = task
+        await task.value
     }
 
     var launches: [Launch] {

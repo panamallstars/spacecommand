@@ -1,0 +1,40 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchHomeView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Space Command",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 35
+        }
+      },
+      {
+        "comment": "",
+        "key": "À VENIR",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "MAJ %@",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 52
+        }
+      },
+      {
+        "comment": "",
+        "key": "PROCHAIN DÉCOLLAGE",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 81
+        }
+      }
+    ]
+  },
+  "version": 1
+}

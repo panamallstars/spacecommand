@@ -7,158 +7,142 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05C92E12BE1A2F9812FD468C /* SpaceCommandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EB0ADCCC2C187F4C86986F /* SpaceCommandApp.swift */; };
-		0F179AA4A7441F4C62A070C6 /* Rocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8377B74CEF0722D0100E5375 /* Rocket.swift */; };
-		20412228959B81E540A0DB8C /* LaunchCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84A36C5A8AA8D062042BD0E4 /* LaunchCard.swift */; };
-		2690D9EC260CCE5A96B5B73E /* BootstrapData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BB461B4425E5CE03867E2ED /* BootstrapData.swift */; };
-		2E77A2F8C544B36B88BB8F4D /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76145EAAC521953BADFCE07E /* Launch.swift */; };
-		2F5BEC51717FA411D26DFB4F /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92EA43F170B08325E59A45C /* AlertsView.swift */; };
-		3F5FCFF4B952F6B966725DAD /* StarsBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91450FB0324A59CCC952B28 /* StarsBackground.swift */; };
-		3F9C130C4C7D23A9CA478C8D /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E57E50B0FB9014FC743F3FB /* Theme.swift */; };
-		5721A137008677501C85A809 /* Countdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = D454F38E446FC6C15EB89492 /* Countdown.swift */; };
-		75BC8B62CA11E3CD67918AA0 /* MissionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0B7ACB577815F9F63A37C0 /* MissionDetailView.swift */; };
-		7E0402B73960DECB396DE11F /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 354E6AA3A8C96AE5A37D6D2F /* LaunchesView.swift */; };
-		80DB524D0E2DECA92562C7D0 /* EncyclopediaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EF453C752C1C560C1C5FAA /* EncyclopediaView.swift */; };
-		9DB5D13D4B25FD889DC8BB1A /* StatStrip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C881C34C9FFC44139B287A4 /* StatStrip.swift */; };
-		B1DACD5E1BD773FEE55B19A0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1D82436A2D07ED12D088199A /* Localizable.strings */; };
-		C39F3D63580C0EF3013137B3 /* WikipediaService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FAB6CDD9E03580F8F6DC0FA /* WikipediaService.swift */; };
-		C7E00B908F1999CDC0D00083 /* AppLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6720D390219E4620FA46E7 /* AppLanguage.swift */; };
-		D3B358C3BFB761FD8A34AA2A /* LaunchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803BABBCF541D041C6947467 /* LaunchesViewModel.swift */; };
-		D5F66E1F1093A8367459FEF6 /* NextLaunchHero.swift in Sources */ = {isa = PBXBuildFile; fileRef = C590A24A8FE61BA555B43DB2 /* NextLaunchHero.swift */; };
-		DC4F19E563D9F479388F3209 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32261645C0A906375AA4B615 /* APIClient.swift */; };
-		E2C32B0325846C2E372D5B7E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5B79125F0902CB510C3320 /* SettingsView.swift */; };
-		E46B21C01784DF8B8140103A /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6179B68B68267BAB094E04 /* NotificationService.swift */; };
-		E65905FEACACD2571AE27C06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25F55E20AB76CAEE151879B6 /* Assets.xcassets */; };
+		1A2B3C4D5E6F708192A3B4C5 /* SpaceCommandWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 2B3C4D5E6F708192A3B4C5D6 /* SpaceCommandWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3C4D5E6F708192A3B4C5D6E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0FF7731678D70A0937769A5A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4D5E6F708192A3B4C5D6E7F8;
+			remoteInfo = SpaceCommandWatch;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5E6F708192A3B4C5D6E7F809 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				1A2B3C4D5E6F708192A3B4C5 /* SpaceCommandWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		08E1D51BFE582E252B1BC163 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		0FAB6CDD9E03580F8F6DC0FA /* WikipediaService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaService.swift; sourceTree = "<group>"; };
-		12EF453C752C1C560C1C5FAA /* EncyclopediaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncyclopediaView.swift; sourceTree = "<group>"; };
-		25F55E20AB76CAEE151879B6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2E57E50B0FB9014FC743F3FB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		32261645C0A906375AA4B615 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
-		354E6AA3A8C96AE5A37D6D2F /* LaunchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesView.swift; sourceTree = "<group>"; };
-		4C881C34C9FFC44139B287A4 /* StatStrip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatStrip.swift; sourceTree = "<group>"; };
-		55E45C3EF029583EA100FE49 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		76145EAAC521953BADFCE07E /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
-		803BABBCF541D041C6947467 /* LaunchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesViewModel.swift; sourceTree = "<group>"; };
-		8377B74CEF0722D0100E5375 /* Rocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rocket.swift; sourceTree = "<group>"; };
-		837EAB5501E267E1E8C9CC9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		84A36C5A8AA8D062042BD0E4 /* LaunchCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchCard.swift; sourceTree = "<group>"; };
-		8BB461B4425E5CE03867E2ED /* BootstrapData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootstrapData.swift; sourceTree = "<group>"; };
-		B8EB0ADCCC2C187F4C86986F /* SpaceCommandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceCommandApp.swift; sourceTree = "<group>"; };
-		C590A24A8FE61BA555B43DB2 /* NextLaunchHero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextLaunchHero.swift; sourceTree = "<group>"; };
-		CB0B7ACB577815F9F63A37C0 /* MissionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionDetailView.swift; sourceTree = "<group>"; };
-		D454F38E446FC6C15EB89492 /* Countdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Countdown.swift; sourceTree = "<group>"; };
-		DD5B79125F0902CB510C3320 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		2B3C4D5E6F708192A3B4C5D6 /* SpaceCommandWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceCommandWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFFDE9703E9150C55871268D /* SpaceCommand.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = SpaceCommand.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E92EA43F170B08325E59A45C /* AlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
-		EE6179B68B68267BAB094E04 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		EE6720D390219E4620FA46E7 /* AppLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLanguage.swift; sourceTree = "<group>"; };
-		F91450FB0324A59CCC952B28 /* StarsBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsBackground.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXGroup section */
-		64AEB372E30BB992EA1610C4 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				8BB461B4425E5CE03867E2ED /* BootstrapData.swift */,
-				76145EAAC521953BADFCE07E /* Launch.swift */,
-				8377B74CEF0722D0100E5375 /* Rocket.swift */,
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		6F708192A3B4C5D6E7F8091A /* Exceptions for "SpaceCommand" folder in "SpaceCommand" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
 			);
-			path = Models;
-			sourceTree = "<group>";
+			target = BA04B1C8203B7A79838DC645 /* SpaceCommand */;
 		};
-		900D362BA0B6A580E727FEE6 = {
-			isa = PBXGroup;
-			children = (
-				9694F27E4F735FF52192BAAF /* SpaceCommand */,
-				A709F3EAAA9DF43008EE50BC /* Products */,
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		708192A3B4C5D6E7F8091A2B /* SpaceCommand */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6F708192A3B4C5D6E7F8091A /* Exceptions for "SpaceCommand" folder in "SpaceCommand" target */,
 			);
-			sourceTree = "<group>";
-		};
-		9694F27E4F735FF52192BAAF /* SpaceCommand */ = {
-			isa = PBXGroup;
-			children = (
-				25F55E20AB76CAEE151879B6 /* Assets.xcassets */,
-				837EAB5501E267E1E8C9CC9A /* Info.plist */,
-				B8EB0ADCCC2C187F4C86986F /* SpaceCommandApp.swift */,
-				A2D3848E27A058394127D2E5 /* Localization */,
-				64AEB372E30BB992EA1610C4 /* Models */,
-				E4F54C78CC1E3FA6B6F71072 /* Services */,
-				F604A7433324930835A7F0E1 /* Theme */,
-				BEAA71450447276AB3D9094D /* Views */,
+			explicitFileTypes = {
+			};
+			explicitFolders = (
 			);
 			path = SpaceCommand;
 			sourceTree = "<group>";
 		};
-		A2D3848E27A058394127D2E5 /* Localization */ = {
+		8192A3B4C5D6E7F8091A2B3C /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		92A3B4C5D6E7F8091A2B3C4D /* SpaceCommandWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = SpaceCommandWatch;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXGroup section */
+		900D362BA0B6A580E727FEE6 = {
 			isa = PBXGroup;
 			children = (
-				EE6720D390219E4620FA46E7 /* AppLanguage.swift */,
-				1D82436A2D07ED12D088199A /* Localizable.strings */,
+				708192A3B4C5D6E7F8091A2B /* SpaceCommand */,
+				8192A3B4C5D6E7F8091A2B3C /* Shared */,
+				92A3B4C5D6E7F8091A2B3C4D /* SpaceCommandWatch */,
+				A709F3EAAA9DF43008EE50BC /* Products */,
 			);
-			path = Localization;
 			sourceTree = "<group>";
 		};
 		A709F3EAAA9DF43008EE50BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				DFFDE9703E9150C55871268D /* SpaceCommand.app */,
+				2B3C4D5E6F708192A3B4C5D6 /* SpaceCommandWatch.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BEAA71450447276AB3D9094D /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				E92EA43F170B08325E59A45C /* AlertsView.swift */,
-				D454F38E446FC6C15EB89492 /* Countdown.swift */,
-				12EF453C752C1C560C1C5FAA /* EncyclopediaView.swift */,
-				84A36C5A8AA8D062042BD0E4 /* LaunchCard.swift */,
-				354E6AA3A8C96AE5A37D6D2F /* LaunchesView.swift */,
-				803BABBCF541D041C6947467 /* LaunchesViewModel.swift */,
-				CB0B7ACB577815F9F63A37C0 /* MissionDetailView.swift */,
-				C590A24A8FE61BA555B43DB2 /* NextLaunchHero.swift */,
-				DD5B79125F0902CB510C3320 /* SettingsView.swift */,
-				4C881C34C9FFC44139B287A4 /* StatStrip.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		E4F54C78CC1E3FA6B6F71072 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				32261645C0A906375AA4B615 /* APIClient.swift */,
-				EE6179B68B68267BAB094E04 /* NotificationService.swift */,
-				0FAB6CDD9E03580F8F6DC0FA /* WikipediaService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		F604A7433324930835A7F0E1 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				F91450FB0324A59CCC952B28 /* StarsBackground.swift */,
-				2E57E50B0FB9014FC743F3FB /* Theme.swift */,
-			);
-			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4D5E6F708192A3B4C5D6E7F8 /* SpaceCommandWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A3B4C5D6E7F8091A2B3C4D5E /* Build configuration list for PBXNativeTarget "SpaceCommandWatch" */;
+			buildPhases = (
+				B4C5D6E7F8091A2B3C4D5E6F /* Sources */,
+				C5D6E7F8091A2B3C4D5E6F70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				92A3B4C5D6E7F8091A2B3C4D /* SpaceCommandWatch */,
+				8192A3B4C5D6E7F8091A2B3C /* Shared */,
+			);
+			name = SpaceCommandWatch;
+			packageProductDependencies = (
+			);
+			productName = SpaceCommandWatch;
+			productReference = 2B3C4D5E6F708192A3B4C5D6 /* SpaceCommandWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
 		BA04B1C8203B7A79838DC645 /* SpaceCommand */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA820C2ADA3DFD36E3F06793 /* Build configuration list for PBXNativeTarget "SpaceCommand" */;
 			buildPhases = (
 				C8F40FC700DD3A1D62ADE63B /* Sources */,
 				49B27A0F9C13371E257A9FA2 /* Resources */,
+				5E6F708192A3B4C5D6E7F809 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D6E7F8091A2B3C4D5E6F7081 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				708192A3B4C5D6E7F8091A2B /* SpaceCommand */,
+				8192A3B4C5D6E7F8091A2B3C /* Shared */,
 			);
 			name = SpaceCommand;
 			packageProductDependencies = (
@@ -176,6 +160,9 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					4D5E6F708192A3B4C5D6E7F8 = {
+						ProvisioningStyle = Automatic;
+					};
 					BA04B1C8203B7A79838DC645 = {
 						ProvisioningStyle = Automatic;
 					};
@@ -197,6 +184,7 @@
 			projectRoot = "";
 			targets = (
 				BA04B1C8203B7A79838DC645 /* SpaceCommand */,
+				4D5E6F708192A3B4C5D6E7F8 /* SpaceCommandWatch */,
 			);
 		};
 /* End PBXProject section */
@@ -206,54 +194,42 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E65905FEACACD2571AE27C06 /* Assets.xcassets in Resources */,
-				B1DACD5E1BD773FEE55B19A0 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5D6E7F8091A2B3C4D5E6F70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B4C5D6E7F8091A2B3C4D5E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C8F40FC700DD3A1D62ADE63B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC4F19E563D9F479388F3209 /* APIClient.swift in Sources */,
-				2F5BEC51717FA411D26DFB4F /* AlertsView.swift in Sources */,
-				C7E00B908F1999CDC0D00083 /* AppLanguage.swift in Sources */,
-				2690D9EC260CCE5A96B5B73E /* BootstrapData.swift in Sources */,
-				5721A137008677501C85A809 /* Countdown.swift in Sources */,
-				80DB524D0E2DECA92562C7D0 /* EncyclopediaView.swift in Sources */,
-				2E77A2F8C544B36B88BB8F4D /* Launch.swift in Sources */,
-				20412228959B81E540A0DB8C /* LaunchCard.swift in Sources */,
-				7E0402B73960DECB396DE11F /* LaunchesView.swift in Sources */,
-				D3B358C3BFB761FD8A34AA2A /* LaunchesViewModel.swift in Sources */,
-				75BC8B62CA11E3CD67918AA0 /* MissionDetailView.swift in Sources */,
-				D5F66E1F1093A8367459FEF6 /* NextLaunchHero.swift in Sources */,
-				E46B21C01784DF8B8140103A /* NotificationService.swift in Sources */,
-				0F179AA4A7441F4C62A070C6 /* Rocket.swift in Sources */,
-				E2C32B0325846C2E372D5B7E /* SettingsView.swift in Sources */,
-				05C92E12BE1A2F9812FD468C /* SpaceCommandApp.swift in Sources */,
-				3F5FCFF4B952F6B966725DAD /* StarsBackground.swift in Sources */,
-				9DB5D13D4B25FD889DC8BB1A /* StatStrip.swift in Sources */,
-				3F9C130C4C7D23A9CA478C8D /* Theme.swift in Sources */,
-				C39F3D63580C0EF3013137B3 /* WikipediaService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXVariantGroup section */
-		1D82436A2D07ED12D088199A /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55E45C3EF029583EA100FE49 /* en */,
-				08E1D51BFE582E252B1BC163 /* fr */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
+/* Begin PBXTargetDependency section */
+		D6E7F8091A2B3C4D5E6F7081 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4D5E6F708192A3B4C5D6E7F8 /* SpaceCommandWatch */;
+			targetProxy = 3C4D5E6F708192A3B4C5D6E7 /* PBXContainerItemProxy */;
 		};
-/* End PBXVariantGroup section */
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		01381D85EA193090528BAA45 /* Debug */ = {
@@ -437,6 +413,60 @@
 			};
 			name = Release;
 		};
+		E7F8091A2B3C4D5E6F708192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Space Command";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.spacecommand.SpaceCommand;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.spacecommand.SpaceCommand.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		F8091A2B3C4D5E6F70819200 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Space Command";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = app.spacecommand.SpaceCommand;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.spacecommand.SpaceCommand.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -445,6 +475,15 @@
 			buildConfigurations = (
 				01381D85EA193090528BAA45 /* Debug */,
 				168DCB604FBBD4D87351C5D0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		A3B4C5D6E7F8091A2B3C4D5E /* Build configuration list for PBXNativeTarget "SpaceCommandWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7F8091A2B3C4D5E6F708192 /* Debug */,
+				F8091A2B3C4D5E6F70819200 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

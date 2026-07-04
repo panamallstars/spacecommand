@@ -16,10 +16,10 @@ struct RecentLaunchesView: View {
                             .tracking(1.2)
                             .foregroundColor(Palette.faint)
                         Text("Récemment\nlancé")
-                            .font(Font2.display(36, weight: .heavy))
+                            .font(Font2.orbitron(36, weight: .heavy))
                             .foregroundColor(Palette.text)
                         Text("Historique des dernières missions SpaceX : Falcon 9, Falcon Heavy et Starship. Explorez les résultats et performances de chaque vol.")
-                            .font(Font2.body)
+                            .font(Font2.body(14))
                             .foregroundColor(Palette.muted)
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -54,8 +54,8 @@ struct RecentLaunchesView: View {
     private func recentCard(_ launch: Launch) -> some View {
         ZStack(alignment: .bottomLeading) {
             // Background image
-            if let imageUrl = launch.image?.image_url {
-                AsyncImage(url: URL(string: imageUrl)) { image in
+            if let imageUrl = launch.image?.imageUrl {
+                AsyncImage(url: imageUrl) { image in
                     image
                         .resizable()
                         .scaledToFill()
@@ -96,7 +96,7 @@ struct RecentLaunchesView: View {
                 .lineLimit(1)
 
                 // Mission name
-                Text(launch.mission?.name ?? launch.name ?? "Unknown")
+                Text(launch.mission?.name ?? launch.name)
                     .font(Font2.orbitron(11, weight: .semibold))
                     .foregroundColor(Palette.text)
                     .lineLimit(2)

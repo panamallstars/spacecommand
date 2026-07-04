@@ -1,0 +1,64 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/RecentLaunchesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Récemment lancé",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 40
+        }
+      },
+      {
+        "comment": "",
+        "key": "Récemment\nlancé",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "Historique des dernières missions SpaceX : Falcon 9, Falcon Heavy et Starship. Explorez les résultats et performances de chaque vol.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 21
+        }
+      },
+      {
+        "comment": "",
+        "key": "✓",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "✗",
+        "location": {
+          "startingColumn": 57,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "○",
+        "location": {
+          "startingColumn": 65,
+          "startingLine": 87
+        }
+      },
+      {
+        "comment": "",
+        "key": "●",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 108
+        }
+      }
+    ]
+  },
+  "version": 1
+}

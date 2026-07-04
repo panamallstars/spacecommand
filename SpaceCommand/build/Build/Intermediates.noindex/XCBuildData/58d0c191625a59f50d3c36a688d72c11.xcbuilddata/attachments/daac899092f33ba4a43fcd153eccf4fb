@@ -1,0 +1,129 @@
+{
+  "" : {
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatch-primary.dia",
+    "emit-module-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatch-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatch-primary-emit-module.dia",
+    "pch" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatch-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatch-primary.swiftdeps"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/APIClient.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/APIClient~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/BootstrapData.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/BootstrapData~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/CountdownState.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/CountdownState~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Launch.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Launch~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Rocket.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Rocket~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/StatsCalculator.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/StatsCalculator~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Theme.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/Theme~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/SpaceCommandWatchApp.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/SpaceCommandWatchApp~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchHomeView.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchHomeView~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchLaunchDetailView.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchDetailView~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchLaunchesModel.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/WatchLaunchesModel~partial.swiftmodule"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/Objects-normal/x86_64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

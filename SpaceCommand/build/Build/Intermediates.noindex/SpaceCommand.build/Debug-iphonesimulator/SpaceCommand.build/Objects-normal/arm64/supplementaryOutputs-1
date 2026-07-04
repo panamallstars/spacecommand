@@ -1,0 +1,23 @@
+{
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/APIClient.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/APIClient.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/APIClient.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/APIClient.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/APIClient.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/APIClient.swiftdeps"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/BootstrapData.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/BootstrapData.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/BootstrapData.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/BootstrapData.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/BootstrapData.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/BootstrapData.swiftdeps"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Localization/AppLanguage.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/AppLanguage.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/AppLanguage.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/AppLanguage.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/AppLanguage.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/AppLanguage.swiftdeps"
+  }
+}

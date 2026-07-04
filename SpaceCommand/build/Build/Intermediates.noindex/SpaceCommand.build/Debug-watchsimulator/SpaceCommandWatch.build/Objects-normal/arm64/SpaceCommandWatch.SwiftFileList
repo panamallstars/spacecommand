@@ -1,0 +1,12 @@
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/APIClient.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/BootstrapData.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/CountdownState.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Launch.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Rocket.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/SpaceCommandWatchApp.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchHomeView.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchLaunchDetailView.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchLaunchesModel.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/StatsCalculator.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Theme.swift
+/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-watchsimulator/SpaceCommandWatch.build/DerivedSources/GeneratedAssetSymbols.swift

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/SpaceCommandApp.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Space Command",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 122
+        }
+      }
+    ]
+  },
+  "version": 1
+}

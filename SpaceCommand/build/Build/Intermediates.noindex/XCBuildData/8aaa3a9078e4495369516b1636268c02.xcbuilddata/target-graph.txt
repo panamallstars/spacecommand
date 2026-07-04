@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'SpaceCommand' in project 'SpaceCommand' (no dependencies)

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommandWatch/WatchLaunchDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Mission",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 72
+        }
+      }
+    ]
+  },
+  "version": 1
+}

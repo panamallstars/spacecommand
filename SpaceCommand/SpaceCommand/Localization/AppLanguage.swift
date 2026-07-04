@@ -145,7 +145,10 @@ enum Strings {
         "support_btn": "Offrir un café ☕",
         "support_desc": "Space Command est gratuit et sans publicité. Si l'app t'est utile, tu peux soutenir son développement.",
 
-        "dayunit": "j"
+        "dayunit": "j",
+
+        "updated_at": "MAJ {t}",
+        "offline_badge": "HORS-LIGNE"
     ]
 
     static let en: [String: String] = [
@@ -250,6 +253,9 @@ enum Strings {
         "support_btn": "Buy me a coffee ☕",
         "support_desc": "Space Command is free and ad-free. If you find it useful, you can support its development.",
 
-        "dayunit": "d"
+        "dayunit": "d",
+
+        "updated_at": "Updated {t}",
+        "offline_badge": "OFFLINE"
     ]
 }

@@ -1,0 +1,32 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/StatsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Statistiques",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 108
+        }
+      },
+      {
+        "comment": "",
+        "key": "Statistiques\nSpaceX",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 31
+        }
+      },
+      {
+        "comment": "",
+        "key": "Vue d'ensemble des performances de SpaceX : lancements, taux de réussite, records de la flotte et tendances du programme spatial.",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 34
+        }
+      }
+    ]
+  },
+  "version": 1
+}

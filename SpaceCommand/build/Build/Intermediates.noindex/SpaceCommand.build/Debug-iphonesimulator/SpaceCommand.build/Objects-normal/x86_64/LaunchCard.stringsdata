@@ -1,0 +1,16 @@
+{
+  "source": "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/LaunchCard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "#%lld",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 118
+        }
+      }
+    ]
+  },
+  "version": 1
+}

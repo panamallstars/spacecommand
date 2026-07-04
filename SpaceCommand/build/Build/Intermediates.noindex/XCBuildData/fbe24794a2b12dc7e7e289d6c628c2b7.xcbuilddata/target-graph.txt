@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'SpaceCommand' in project 'SpaceCommand'
+➜ Explicit dependency on target 'SpaceCommandWatch' in project 'SpaceCommand'
+Target 'SpaceCommandWatch' in project 'SpaceCommand' (no dependencies)

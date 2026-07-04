@@ -60,31 +60,23 @@ struct LaunchesView: View {
             }
             .background(StarsBackground())
             .scrollContentBackground(.hidden)
-            .refreshable { await vm.load() }
+            .refreshable { await vm.load(force: true) }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     BrandMark()
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: 12) {
-                        Button(action: { showRecent = true }) {
-                            Image(systemName: "clock.fill")
-                                .font(.title3)
-                                .foregroundColor(Palette.accent)
-                        }
-                        Button(action: { showStats = true }) {
-                            Image(systemName: "chart.bar.fill")
-                                .font(.title3)
-                                .foregroundColor(Palette.accent)
-                        }
+                    HStack(spacing: 8) {
+                        ToolbarIconButton(icon: "clock.arrow.trianglehead.counterclockwise.rotate.90") { showRecent = true }
+                        ToolbarIconButton(icon: "chart.line.uptrend.xyaxis") { showStats = true }
                     }
                 }
             }
             .toolbarBackground(Palette.bg.opacity(0.85), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
-            .task { if case .loading = vm.state { await vm.load() } }
+            .task { if vm.launches.isEmpty { await vm.load() } }
             .sheet(item: $selected) { launch in
                 MissionDetailView(launch: launch)
                     .environmentObject(lang)
@@ -122,8 +114,40 @@ struct LaunchesView: View {
             Text(lang.t("h_sub"))
                 .font(Font2.body(14))
                 .foregroundColor(Palette.muted)
+            freshness
         }
         .padding(.top, 4)
+    }
+
+    @ViewBuilder
+    private var freshness: some View {
+        if vm.lastUpdated != nil || vm.isStale {
+            HStack(spacing: 8) {
+                if vm.isStale {
+                    HStack(spacing: 5) {
+                        Image(systemName: "wifi.slash")
+                            .font(.system(size: 9, weight: .semibold))
+                        Text(lang.t("offline_badge"))
+                            .font(Font2.mono(10, weight: .semibold))
+                    }
+                    .foregroundColor(Palette.tbd)
+                    .padding(.horizontal, 8).padding(.vertical, 4)
+                    .background(Palette.tbd.opacity(0.12))
+                    .clipShape(Capsule())
+                }
+                if let date = vm.lastUpdated {
+                    Text(lang.t("updated_at", ["t": date.formatted(date: .omitted, time: .shortened)]))
+                        .font(Font2.mono(10))
+                        .foregroundColor(Palette.faint)
+                }
+                if vm.isRefreshing {
+                    ProgressView()
+                        .scaleEffect(0.55)
+                        .tint(Palette.accent)
+                }
+            }
+            .padding(.top, 2)
+        }
     }
 
     private var grid: some View {
@@ -212,6 +236,49 @@ struct LaunchesView: View {
         .overlay(
             RoundedRectangle(cornerRadius: 16)
                 .stroke(Palette.stroke, lineWidth: 0.5)
+        )
+    }
+}
+
+struct ToolbarIconButton: View {
+    let icon: String
+    let action: () -> Void
+    @State private var pressed = false
+
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: icon)
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(
+                    LinearGradient(
+                        colors: [Palette.text, Color(red: 0.624, green: 0.851, blue: 1.0)],
+                        startPoint: .top, endPoint: .bottom
+                    )
+                )
+                .frame(width: 34, height: 34)
+                .background(
+                    Circle()
+                        .fill(Palette.panel.opacity(0.7))
+                )
+                .overlay(
+                    Circle()
+                        .stroke(
+                            LinearGradient(
+                                colors: [Palette.accent.opacity(0.55), Palette.strokeStrong],
+                                startPoint: .topLeading, endPoint: .bottomTrailing
+                            ),
+                            lineWidth: 0.75
+                        )
+                )
+                .shadow(color: Palette.accent.opacity(0.18), radius: 6, y: 2)
+        }
+        .buttonStyle(.plain)
+        .scaleEffect(pressed ? 0.90 : 1)
+        .animation(.spring(response: 0.25, dampingFraction: 0.6), value: pressed)
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in pressed = true }
+                .onEnded { _ in pressed = false }
         )
     }
 }
