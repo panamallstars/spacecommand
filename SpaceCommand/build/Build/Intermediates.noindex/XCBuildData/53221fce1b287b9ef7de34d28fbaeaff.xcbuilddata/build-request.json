@@ -6,9 +6,6 @@
   },
   "configuredTargets" : [
     {
-      "guid" : "ddb731d0fff1d4702bde1d0c763fa4a95fe3441de3cf14fc7bcb2eab25897ee7"
-    },
-    {
       "guid" : "ddb731d0fff1d4702bde1d0c763fa4a92b4791ed21cf578603811989f688a23b"
     }
   ],
@@ -23,9 +20,9 @@
     "activeRunDestination" : {
       "disableOnlyActiveArch" : true,
       "hostTargetedPlatform" : null,
-      "platform" : "watchsimulator",
-      "sdk" : "watchsimulator26.4",
-      "sdkVariant" : "watchsimulator",
+      "platform" : "iphonesimulator",
+      "sdk" : "iphonesimulator26.4",
+      "sdkVariant" : "iphonesimulator",
       "supportedArchitectures" : [
         "i386",
         "x86_64"

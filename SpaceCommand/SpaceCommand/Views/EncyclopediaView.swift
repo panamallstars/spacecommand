@@ -233,6 +233,9 @@ struct RocketRefCard: View {
                     spec("STAGES", rocket.stages)
                     spec("ENG.", rocket.engines)
                     spec("FIRST", rocket.firstFlight)
+                    if let lastFlight = rocket.lastFlight {
+                        spec("LAST", lastFlight)
+                    }
                     spec("REUSE", rocket.reusable)
                 }
 

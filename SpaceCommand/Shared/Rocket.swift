@@ -6,6 +6,7 @@ struct RocketReference: Identifiable, Hashable {
     let variant: String
     let inService: Bool
     let firstFlight: String
+    let lastFlight: String?
     let height: String
     let diameter: String
     let mass: String
@@ -58,6 +59,7 @@ enum RocketCatalog {
             variant: "Block 5 · Two-stage · Reusable booster",
             inService: true,
             firstFlight: "2010",
+            lastFlight: nil,
             height: "70 m",
             diameter: "3.7 m",
             mass: "549 t",
@@ -79,6 +81,7 @@ enum RocketCatalog {
             variant: "Two side boosters + center core",
             inService: true,
             firstFlight: "2018",
+            lastFlight: nil,
             height: "70 m",
             diameter: "12.2 m (with boosters)",
             mass: "1 420 t",
@@ -98,7 +101,8 @@ enum RocketCatalog {
             name: "Starship",
             variant: "Super Heavy + Starship · fully reusable",
             inService: true,
-            firstFlight: "2023 (orbital)",
+            firstFlight: "Apr 2023 (IFT-1)",
+            lastFlight: "24 Jul 2026 (IFT-13)",
             height: "121 m",
             diameter: "9 m",
             mass: "5 000 t",
@@ -111,7 +115,8 @@ enum RocketCatalog {
             palmares: [
                 .init(label: "Tallest rocket ever built", kind: .ok),
                 .init(label: "Mechazilla catch (booster)", kind: .ok),
-                .init(label: "Development program", kind: .neutral)
+                .init(label: "IFT-13: first op. Starlink V3 deploy", kind: .ok),
+                .init(label: "13 flight tests since 2023", kind: .neutral)
             ]
         )
     ]
@@ -123,6 +128,7 @@ enum RocketCatalog {
             variant: "First privately developed orbital rocket",
             inService: false,
             firstFlight: "2006",
+            lastFlight: "2009",
             height: "21 m",
             diameter: "1.7 m",
             mass: "38 t",
@@ -143,6 +149,7 @@ enum RocketCatalog {
             variant: "Early Falcon 9 variants",
             inService: false,
             firstFlight: "2010",
+            lastFlight: "2016",
             height: "47–68 m",
             diameter: "3.7 m",
             mass: "333–506 t",
@@ -230,18 +237,18 @@ enum RocketCatalog {
             name: "Freedom",
             serial: "C212",
             variant: "Crew Dragon 2",
-            missions: 3,
+            missions: 5,
             crewCapacity: "4 (up to 7)",
             status: "Active",
             imageURL: URL(string: "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/spacex_crew_drag_image_20200504074435.jpeg"),
             wikipediaTitle: "SpaceX Dragon 2",
             palmares: [
-                .init(label: "Crew-4, Axiom-1, Crew-8", kind: .neutral),
-                .init(label: "Commercial & NASA missions", kind: .ok)
+                .init(label: "Crew-4, Ax-2, Ax-3, Crew-9, Crew-12", kind: .neutral),
+                .init(label: "5 ISS missions flown", kind: .ok)
             ],
-            firstFlight: "2023-04-27",
-            lastFlight: "2024-03-09",
-            nextFlight: "2026-07-25"
+            firstFlight: "2022-04-27",
+            lastFlight: "2026-02-13",
+            nextFlight: nil
         ),
     ]
 }
