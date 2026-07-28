@@ -1,0 +1,23 @@
+{
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/StatsCalculator.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/StatsCalculator.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/StatsCalculator.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/StatsCalculator.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/StatsCalculator.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/StatsCalculator.swiftdeps"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Theme.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Theme.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Theme.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Theme.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Theme.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Theme.swiftdeps"
+  },
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Services/NotificationService.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/NotificationService.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/NotificationService.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/NotificationService.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/NotificationService.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/NotificationService.swiftdeps"
+  }
+}

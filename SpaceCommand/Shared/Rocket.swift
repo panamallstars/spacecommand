@@ -35,6 +35,22 @@ struct BoosterReference: Identifiable, Hashable {
     let lastPad: String
 }
 
+struct DragonFlight: Hashable {
+    let mission: String
+    let launchDate: String
+    let landingDate: String?
+    let crew: [String]
+}
+
+struct CargoDragonReference: Identifiable, Hashable {
+    let id: String
+    let serial: String
+    let status: String
+    let firstFlight: String
+    let missions: Int
+    let flightHistory: [DragonFlight]
+}
+
 struct CrewDragonReference: Identifiable, Hashable {
     let id: String
     let name: String
@@ -49,6 +65,7 @@ struct CrewDragonReference: Identifiable, Hashable {
     let firstFlight: String?
     let lastFlight: String?
     let nextFlight: String?
+    let flightHistory: [DragonFlight]
 }
 
 enum RocketCatalog {
@@ -167,7 +184,7 @@ enum RocketCatalog {
     ]
 
     static let activeBoosters: [BoosterReference] = [
-        BoosterReference(id: "b1067", serial: "B1067", flights: 35, landings: 34, status: "Active", notable: "Reuse record holder", lastPad: "LC-39A"),
+        BoosterReference(id: "b1067", serial: "B1067", flights: 36, landings: 36, status: "Active", notable: "Reuse record holder · perfect landing streak", lastPad: "SLC-40"),
         BoosterReference(id: "b1061", serial: "B1061", flights: 25, landings: 24, status: "Active", notable: "Crew Dragon veteran", lastPad: "LC-39A"),
         BoosterReference(id: "b1062", serial: "B1062", flights: 24, landings: 23, status: "Active", notable: "GPS & national security missions", lastPad: "SLC-4E"),
         BoosterReference(id: "b1069", serial: "B1069", flights: 22, landings: 21, status: "Active", notable: "High-cadence Starlink launcher", lastPad: "LC-40"),
@@ -183,18 +200,26 @@ enum RocketCatalog {
             name: "Endeavour",
             serial: "C206",
             variant: "Crew Dragon 2",
-            missions: 5,
+            missions: 6,
             crewCapacity: "4 (up to 7)",
             status: "Active",
             imageURL: URL(string: "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/spacex_crew_drag_image_20200504074435.jpeg"),
             wikipediaTitle: "SpaceX Dragon 2",
             palmares: [
                 .init(label: "First Crew Dragon in orbit (Demo-2)", kind: .ok),
-                .init(label: "5 crewed missions flown", kind: .ok)
+                .init(label: "6 crewed missions flown", kind: .ok)
             ],
             firstFlight: "2020-05-30",
-            lastFlight: "2023-10-16",
-            nextFlight: "2026-10-15"
+            lastFlight: "2025-08-01",
+            nextFlight: nil,
+            flightHistory: [
+                .init(mission: "Demo-2", launchDate: "2020-05-30", landingDate: "2020-08-02", crew: ["Douglas Hurley", "Robert Behnken"]),
+                .init(mission: "Crew-2", launchDate: "2021-04-23", landingDate: "2021-11-09", crew: ["Shane Kimbrough", "Megan McArthur", "Akihiko Hoshide", "Thomas Pesquet"]),
+                .init(mission: "Axiom Mission 1", launchDate: "2022-04-08", landingDate: "2022-04-25", crew: ["Michael López-Alegría", "Larry Connor", "Eytan Stibbe", "Mark Pathy"]),
+                .init(mission: "Crew-6", launchDate: "2023-03-02", landingDate: "2023-09-04", crew: ["Stephen Bowen", "Warren Hoburg", "Sultan Al Neyadi", "Andreï Fediaïev"]),
+                .init(mission: "Crew-8", launchDate: "2024-03-04", landingDate: "2024-10-25", crew: ["Matthew Dominick", "Michael Barratt", "Jeanette Epps", "Alexandre Grebionkine"]),
+                .init(mission: "Crew-11", launchDate: "2025-08-01", landingDate: "2026-01-15", crew: ["Zena Cardman", "Michael Fincke", "Kimiya Yui", "Oleg Platonov"])
+            ]
         ),
         CrewDragonReference(
             id: "resilience",
@@ -210,9 +235,15 @@ enum RocketCatalog {
                 .init(label: "Inspiration4 (first all-civilian orbital crew)", kind: .ok),
                 .init(label: "4 missions flown", kind: .ok)
             ],
-            firstFlight: "2020-11-15",
-            lastFlight: "2023-02-26",
-            nextFlight: "2026-09-20"
+            firstFlight: "2020-11-16",
+            lastFlight: "2025-04-01",
+            nextFlight: nil,
+            flightHistory: [
+                .init(mission: "Crew-1", launchDate: "2020-11-16", landingDate: "2021-05-02", crew: ["Michael Hopkins", "Victor Glover", "Soichi Noguchi", "Shannon Walker"]),
+                .init(mission: "Inspiration4", launchDate: "2021-09-16", landingDate: "2021-09-18", crew: ["Jared Isaacman", "Sian Proctor", "Hayley Arceneaux", "Christopher Sembroski"]),
+                .init(mission: "Polaris Dawn", launchDate: "2024-09-10", landingDate: "2024-09-15", crew: ["Jared Isaacman", "Scott Poteet", "Sarah Gillis", "Anna Menon"]),
+                .init(mission: "Fram2", launchDate: "2025-04-01", landingDate: "2025-04-04", crew: ["Jannicke Mikkelsen", "Rabea Rogge", "Chun Wang", "Eric Philips"])
+            ]
         ),
         CrewDragonReference(
             id: "endurance",
@@ -225,12 +256,18 @@ enum RocketCatalog {
             imageURL: URL(string: "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/spacex_crew_drag_image_20200504074435.jpeg"),
             wikipediaTitle: "SpaceX Dragon 2",
             palmares: [
-                .init(label: "Crew-3, Crew-5, Crew-7, Crew-9", kind: .neutral),
+                .init(label: "Crew-3, Crew-5, Crew-7, Crew-10", kind: .neutral),
                 .init(label: "4 ISS rotation missions", kind: .ok)
             ],
-            firstFlight: "2022-03-02",
-            lastFlight: "2024-08-15",
-            nextFlight: "2026-08-10"
+            firstFlight: "2021-11-11",
+            lastFlight: "2025-03-12",
+            nextFlight: nil,
+            flightHistory: [
+                .init(mission: "Crew-3", launchDate: "2021-11-11", landingDate: "2022-05-06", crew: ["Raja Chari", "Thomas Marshburn", "Kayla Barron", "Matthias Maurer"]),
+                .init(mission: "Crew-5", launchDate: "2022-10-05", landingDate: "2023-03-12", crew: ["Nicole Mann", "Josh Cassada", "Kōichi Wakata", "Anna Kikina"]),
+                .init(mission: "Crew-7", launchDate: "2023-08-26", landingDate: "2024-03-12", crew: ["Jasmin Moghbeli", "Andreas Mogensen", "Satoshi Furukawa", "Konstantin Borissov"]),
+                .init(mission: "Crew-10", launchDate: "2025-03-12", landingDate: "2025-08-09", crew: ["Anne McClain", "Nichole Ayers", "Takuya Onishi", "Kirill Peskov"])
+            ]
         ),
         CrewDragonReference(
             id: "freedom",
@@ -248,7 +285,104 @@ enum RocketCatalog {
             ],
             firstFlight: "2022-04-27",
             lastFlight: "2026-02-13",
-            nextFlight: nil
+            nextFlight: nil,
+            flightHistory: [
+                .init(
+                    mission: "Crew-4",
+                    launchDate: "2022-04-27",
+                    landingDate: "2022-10-14",
+                    crew: ["Kjell Lindgren", "Robert Hines", "Samantha Cristoforetti", "Jessica Watkins"]
+                ),
+                .init(
+                    mission: "Axiom Mission 2",
+                    launchDate: "2023-05-21",
+                    landingDate: "2023-05-31",
+                    crew: ["Peggy Whitson", "John Shoffner", "Ali Al-Qarni", "Rayyanah Barnawi"]
+                ),
+                .init(
+                    mission: "Axiom Mission 3",
+                    launchDate: "2024-01-18",
+                    landingDate: "2024-02-09",
+                    crew: ["Michael López-Alegría", "Walter Villadei", "Alper Gezeravcı", "Marcus Wandt"]
+                ),
+                .init(
+                    mission: "Crew-9",
+                    launchDate: "2024-09-28",
+                    landingDate: "2025-03-18",
+                    crew: ["Nick Hague", "Alexandre Gorbounov", "Barry Wilmore", "Sunita Williams"]
+                ),
+                .init(
+                    mission: "Crew-12",
+                    launchDate: "2026-02-13",
+                    landingDate: nil,
+                    crew: ["Jessica Meir", "Jack Hathaway", "Sophie Adenot", "Andreï Fediaïev"]
+                )
+            ]
+        ),
+        CrewDragonReference(
+            id: "grace",
+            name: "Grace",
+            serial: "C213",
+            variant: "Crew Dragon 2",
+            missions: 1,
+            crewCapacity: "4 (up to 7)",
+            status: "Active",
+            imageURL: URL(string: "https://thespacedevs-prod.nyc3.digitaloceanspaces.com/media/images/spacex_crew_drag_image_20200504074435.jpeg"),
+            wikipediaTitle: "SpaceX Dragon 2",
+            palmares: [
+                .init(label: "5th and final Crew Dragon capsule", kind: .neutral),
+                .init(label: "Axiom Mission 4", kind: .ok)
+            ],
+            firstFlight: "2025-06-25",
+            lastFlight: "2025-06-25",
+            nextFlight: nil,
+            flightHistory: [
+                .init(mission: "Axiom Mission 4", launchDate: "2025-06-25", landingDate: "2025-07-15", crew: ["Peggy Whitson", "Shubhanshu Shukla", "Sławosz Uznański-Wiśniewski", "Tibor Kapu"])
+            ]
+        ),
+    ]
+
+    static let cargoDragons: [CargoDragonReference] = [
+        CargoDragonReference(
+            id: "c208",
+            serial: "C208",
+            status: "Active",
+            firstFlight: "2020-12-06",
+            missions: 5,
+            flightHistory: [
+                .init(mission: "CRS-21", launchDate: "2020-12-06", landingDate: "2021-01-14", crew: []),
+                .init(mission: "CRS-23", launchDate: "2021-08-29", landingDate: "2021-10-01", crew: []),
+                .init(mission: "CRS-25", launchDate: "2022-07-15", landingDate: "2022-08-20", crew: []),
+                .init(mission: "CRS-28", launchDate: "2023-06-05", landingDate: "2023-06-30", crew: []),
+                .init(mission: "CRS-31", launchDate: "2024-11-05", landingDate: "2024-12-17", crew: [])
+            ]
+        ),
+        CargoDragonReference(
+            id: "c209",
+            serial: "C209",
+            status: "Active",
+            firstFlight: "2021-03-15",
+            missions: 6,
+            flightHistory: [
+                .init(mission: "CRS-22", launchDate: "2021-03-15", landingDate: "2021-04-20", crew: []),
+                .init(mission: "CRS-24", launchDate: "2021-12-21", landingDate: "2022-01-24", crew: []),
+                .init(mission: "CRS-27", launchDate: "2023-03-15", landingDate: "2023-04-15", crew: []),
+                .init(mission: "CRS-30", launchDate: "2024-03-21", landingDate: "2024-04-30", crew: []),
+                .init(mission: "CRS-32", launchDate: "2025-04-21", landingDate: "2025-05-25", crew: []),
+                .init(mission: "CRS-34", launchDate: "2026-05-15", landingDate: nil, crew: [])
+            ]
+        ),
+        CargoDragonReference(
+            id: "c211",
+            serial: "C211",
+            status: "Active",
+            firstFlight: "2022-11-26",
+            missions: 3,
+            flightHistory: [
+                .init(mission: "CRS-26", launchDate: "2022-11-26", landingDate: "2023-01-11", crew: []),
+                .init(mission: "CRS-29", launchDate: "2023-11-10", landingDate: "2023-12-22", crew: []),
+                .init(mission: "CRS-33", launchDate: "2025-08-24", landingDate: "2026-02-27", crew: [])
+            ]
         ),
     ]
 }

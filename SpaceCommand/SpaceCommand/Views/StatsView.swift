@@ -87,10 +87,10 @@ struct StatsView: View {
                             highlight: true
                         )
                         statCard(
-                            value: "628",
+                            value: "638",
                             unit: "récupérés",
                             label: "LANDINGS BOOSTERS",
-                            detail: "628 / 641 tentatives (98%)",
+                            detail: "638 / 652 tentatives (98%)",
                             highlight: true
                         )
                         statCard(

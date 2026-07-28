@@ -255,6 +255,21 @@ gtag('config', 'G-JL8TH7G6V9', {
   .cdate span{font-family:'JetBrains Mono';font-size:.65rem;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;display:block}
   .cdate b{font-size:.85rem;color:#fff}
 
+  .cargoimg{display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 40%,#131b30,#0a0f1c)}
+  .cargoimg::before{content:"📦";font-size:2.6rem;opacity:.35;filter:grayscale(.3)}
+
+  .flighthist{margin-top:14px;padding-top:14px;border-top:1px solid var(--stroke)}
+  .flighthist .fh-title{font-family:'JetBrains Mono';font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+  .frow{display:flex;gap:10px;margin-bottom:10px}
+  .frow:last-child{margin-bottom:0}
+  .frow .fdot{width:6px;height:6px;border-radius:50%;background:var(--accent);margin-top:6px;flex-shrink:0}
+  .frow.ongoing .fdot{background:var(--go);box-shadow:0 0 6px var(--go)}
+  .frow .fbody{flex:1;min-width:0}
+  .frow .fmission{font-weight:600;font-size:.85rem;color:#fff;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+  .frow .ftag{font-family:'JetBrains Mono';font-size:.58rem;font-weight:700;letter-spacing:.05em;color:var(--go);padding:2px 6px;border:1px solid rgba(46,230,166,.4);border-radius:5px}
+  .frow .fdate{font-family:'JetBrains Mono';font-size:.72rem;color:var(--muted);margin-top:2px}
+  .frow .fcrew{font-size:.68rem;color:var(--faint);margin-top:2px}
+
   .overlay{position:fixed;inset:0;z-index:100;background:rgba(3,5,10,.78);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:40px 18px;overflow-y:auto}
   .overlay.open{display:flex}
   .modal{position:relative;max-width:880px;width:100%;background:var(--panel-solid);border:1px solid var(--stroke-strong);border-radius:22px;overflow:hidden;box-shadow:var(--shadow);animation:rise .3s ease}
@@ -711,9 +726,11 @@ const I18N = {
     ency_inservice:"En service", ency_inservice_sub:"flotte active de SpaceX",
     ency_boosters:"Boosters actifs", ency_boosters_sub:"flotte Falcon 9 Block 5",
     ency_crewdragon:"Crew Dragon", ency_crewdragon_sub:"capsules habitées",
+    ency_cargodragon:"Cargo Dragon", ency_cargodragon_sub:"capsules de fret vers l'ISS",
     b_flights_lbl:"VOLS", b_land_lbl:"ATTERR.", b_last_pad:"Dernier pad",
     cd_missions_lbl:"MISSIONS", cd_crew_lbl:"ÉQUIPAGE", cd_status_lbl:"STATUT",
     cd_first_flight:"Premier vol", cd_last_flight:"Dernier vol", cd_next_flight:"Prochain vol",
+    fh_title:"HISTORIQUE DES VOLS", cd_ongoing:"EN COURS",
     ency_retired:"Hors service", ency_retired_sub:"lanceurs retirés & versions de développement",
     wiki_loading:"Résumé Wikipédia…", wiki_full:"📖 Article complet sur Wikipédia",
     wiki_read_on:"📖 Lire sur Wikipédia", wiki_unavail:"Résumé Wikipédia momentanément indisponible.",
@@ -735,7 +752,7 @@ const I18N = {
     s_rate:"Taux de succès", s_rate_d:"{a} / {b} réussis",
     s_f9rec:"Record Falcon 9", s_ytd:"Lancements en {y}", s_ytd_d:"missions cette année",
     s_starlink:"Starlink lancés", s_starlink_d:"{n} réussites confirmées",
-    s_recover:"Récupérations boosters", s_recover_d:"628 / 641 tentatives (98%)",
+    s_recover:"Récupérations boosters", s_recover_d:"638 / 652 tentatives (98%)",
     s_reusedb:"Boosters réutilisés", s_reusedb_d:"a volé au moins 2 fois",
     u_flights:"vols", u_missions:"missions", u_success:"réussis", u_data_na:"données indisponibles",
     ch_cadence:"Cadence de lancement", ch_cadence_d:"missions par mois · {n} derniers vols",
@@ -794,9 +811,11 @@ const I18N = {
     ency_inservice:"In service", ency_inservice_sub:"SpaceX active fleet",
     ency_boosters:"Active boosters", ency_boosters_sub:"Falcon 9 Block 5 fleet",
     ency_crewdragon:"Crew Dragon", ency_crewdragon_sub:"crewed capsules",
+    ency_cargodragon:"Cargo Dragon", ency_cargodragon_sub:"cargo capsules to the ISS",
     b_flights_lbl:"FLIGHTS", b_land_lbl:"LANDINGS", b_last_pad:"Last pad",
     cd_missions_lbl:"MISSIONS", cd_crew_lbl:"CREW", cd_status_lbl:"STATUS",
     cd_first_flight:"First flight", cd_last_flight:"Last flight", cd_next_flight:"Next flight",
+    fh_title:"FLIGHT HISTORY", cd_ongoing:"ONGOING",
     ency_retired:"Retired", ency_retired_sub:"retired vehicles & development versions",
     wiki_loading:"Wikipedia summary…", wiki_full:"📖 Full article on Wikipedia",
     wiki_read_on:"📖 Read on Wikipedia", wiki_unavail:"Wikipedia summary temporarily unavailable.",
@@ -818,7 +837,7 @@ const I18N = {
     s_rate:"Success rate", s_rate_d:"{a} / {b} successful",
     s_f9rec:"Falcon 9 record", s_ytd:"Launches in {y}", s_ytd_d:"missions this year",
     s_starlink:"Starlink launched", s_starlink_d:"{n} confirmed successes",
-    s_recover:"Booster recoveries", s_recover_d:"628 / 641 attempts (98%)",
+    s_recover:"Booster recoveries", s_recover_d:"638 / 652 attempts (98%)",
     s_reusedb:"Reused boosters", s_reusedb_d:"flew at least twice",
     u_flights:"flights", u_missions:"missions", u_success:"successful", u_data_na:"data unavailable",
     ch_cadence:"Launch cadence", ch_cadence_d:"missions per month · last {n} flights",
@@ -878,7 +897,7 @@ const cacheBoost={}, cacheWiki={};
 
 // Hardcoded booster data from Wikipedia as fallback (source: https://en.wikipedia.org/wiki/List_of_Falcon_9_first-stage_boosters)
 const BOOSTER_RECORDS = {
-  "B1067": { flights: 35, turnaround: null },  // Fleet leader
+  "B1067": { flights: 36, turnaround: null },  // Fleet leader
   "B1062": { flights: 23, turnaround: 21 },   // 21j turnaround record
   "B1076": { flights: 18, turnaround: 21 },   // 21j turnaround record
   "B1061": { flights: 23, turnaround: 25 },   // 25j turnaround
@@ -969,7 +988,7 @@ function renderStatsDash(){
     {v:statsRecord?.flights??"—",l:t('s_f9rec'),u:t('u_flights'),d:`Booster ${statsRecord?.serial??"—"}`,highlight:true},
     {v:statsRecord?.turnaround??"—",l:t('stat_turn'),u:"",d:`Booster ${statsRecord?.turnaroundSerial??"—"}`,highlight:false},
     {v:starlinkCount??"—",l:t('s_starlink'),u:t('u_missions'),d:t('s_starlink_d',{n:starlinkCount}),highlight:true},
-    {v:"628",l:t('s_recover'),u:t('u_success'),d:t('s_recover_d'),highlight:true},
+    {v:"638",l:t('s_recover'),u:t('u_success'),d:t('s_recover_d'),highlight:true},
     {v:"55",l:t('s_reusedb'),u:"",d:t('s_reusedb_d'),highlight:false},
   ];
   const host=document.getElementById('statsdash');
@@ -1135,12 +1154,12 @@ async function buildStats(){
       }
     });
 
-    // Use hardcoded record for B1067 if API data is incomplete
-    if(byBooster["B1067"] && byBooster["B1067"].flights < 20) {
+    // B1067 is the real-world fleet leader; use hardcoded record if API data is missing or incomplete
+    if(!byBooster["B1067"] || byBooster["B1067"].flights < 20) {
       fleetLeader="B1067";
       maxFlights=BOOSTER_RECORDS["B1067"].flights;
       dbg('Using hardcoded B1067 flights (API incomplete)');
-    } else if(byBooster["B1067"]) {
+    } else {
       fleetLeader="B1067";
       maxFlights=byBooster["B1067"].flights;
     }
@@ -1453,8 +1472,8 @@ const ROCKETS=[
    status:{fr:"Actif",en:"Active"},
    specs:{fr:[["Hauteur","70 m"],["Diamètre","3,7 m"],["Masse","549 t"],["Poussée","7 607 kN"],["Charge LEO","22,8 t"],["Charge GTO","8,3 t"],["1er étage","Réutilisable"],["Premier vol","2010 (Block 5 : 2018)"]],
         en:[["Height","70 m"],["Diameter","3.7 m"],["Mass","549 t"],["Thrust","7,607 kN"],["LEO payload","22.8 t"],["GTO payload","8.3 t"],["1st stage","Reusable"],["First flight","2010 (Block 5: 2018)"]]},
-   note:{fr:"Cheval de bataille de SpaceX : 9 moteurs Merlin 1D, 1er étage récupéré par atterrissage propulsif. Le booster B1067 détient le record de réutilisation avec 35 vols.",
-        en:"SpaceX's workhorse: nine Merlin 1D engines, first stage recovered by propulsive landing. Booster B1067 holds the reuse record with 35 flights."}},
+   note:{fr:"Cheval de bataille de SpaceX : 9 moteurs Merlin 1D, 1er étage récupéré par atterrissage propulsif. Le booster B1067 détient le record de réutilisation avec 36 vols et 36 atterrissages réussis — un sans-faute parfait.",
+        en:"SpaceX's workhorse: nine Merlin 1D engines, first stage recovered by propulsive landing. Booster B1067 holds the reuse record with 36 flights and 36 successful landings — a perfect streak."}},
   {key:"fh",name:"Falcon Heavy",color:"var(--fh)",img:PROD_CDN+"falcon_heavy_image_20220129192819.jpeg",
    wiki:{fr:"Falcon Heavy",en:"Falcon Heavy"},
    sub:{fr:"3 cœurs Falcon 9 · lanceur lourd réutilisable",en:"3 Falcon 9 cores · reusable heavy-lift vehicle"},
@@ -1467,10 +1486,10 @@ const ROCKETS=[
    wiki:{fr:"SpaceX Starship",en:"SpaceX Starship"},
    sub:{fr:"Super Heavy + Starship V3 · entièrement réutilisable",en:"Super Heavy + Starship V3 · fully reusable"},
    status:{fr:"Vols d'essai (V3)",en:"Test flights (V3)"},
-   specs:{fr:[["Hauteur","124 m (V3)"],["Diamètre","9 m"],["Masse","~5 250 t"],["Poussée","~80 MN"],["Charge LEO","~100 t (V3)"],["Moteurs","33 × Raptor"],["Réutilisable","Totalement (cible)"],["1er vol intégré","2023"]],
-        en:[["Height","124 m (V3)"],["Diameter","9 m"],["Mass","~5,250 t"],["Thrust","~80 MN"],["LEO payload","~100 t (V3)"],["Engines","33 × Raptor"],["Reusable","Fully (target)"],["First integrated flight","2023"]]},
-   note:{fr:"Le plus grand et plus puissant lanceur jamais construit, conçu pour la Lune et Mars. La version V3 a inauguré ses essais fin mai 2026 ; le vol 13 est attendu vers juillet 2026.",
-        en:"The largest and most powerful launch vehicle ever built, designed for the Moon and Mars. The V3 version began testing in late May 2026; flight 13 is expected around July 2026."}},
+   specs:{fr:[["Hauteur","124 m (V3)"],["Diamètre","9 m"],["Masse","~5 250 t"],["Poussée","~80 MN"],["Charge LEO","~100 t (V3)"],["Moteurs","33 × Raptor"],["Réutilisable","Totalement (cible)"],["1er vol intégré","avr. 2023 (IFT-1)"],["Dernier vol","24 juil. 2026 (IFT-13)"]],
+        en:[["Height","124 m (V3)"],["Diameter","9 m"],["Mass","~5,250 t"],["Thrust","~80 MN"],["LEO payload","~100 t (V3)"],["Engines","33 × Raptor"],["Reusable","Fully (target)"],["First integrated flight","Apr 2023 (IFT-1)"],["Last flight","24 Jul 2026 (IFT-13)"]]},
+   note:{fr:"Le plus grand et plus puissant lanceur jamais construit, conçu pour la Lune et Mars. La version V3 a inauguré ses essais fin mai 2026 ; le vol IFT-13 du 24 juillet 2026 a été le premier à déployer des satellites Starlink V3 opérationnels.",
+        en:"The largest and most powerful launch vehicle ever built, designed for the Moon and Mars. The V3 version began testing in late May 2026; flight IFT-13 on July 24, 2026 was the first to deploy operational Starlink V3 satellites."}},
 ];
 const RETIRED=[
   {key:"f1",name:"Falcon 1",color:"var(--hold)",img:PROD_CDN+"falcon_image_20190222030438.jpeg",liveWiki:true,
@@ -1502,7 +1521,7 @@ const RETIRED=[
         en:"Enlarged ship with greater payload, but a difficult 2025: several losses of the upper stage in flight and on the ground. It still pulled off new booster catches before giving way to V3, whose tests begin in May 2026."}},
 ];
 const ACTIVE_BOOSTERS=[
-  {serial:"B1067",flights:35,landings:34,lastPad:"LC-39A",notable:{fr:"Détenteur du record de réutilisation",en:"Reuse record holder"}},
+  {serial:"B1067",flights:36,landings:36,lastPad:"SLC-40",notable:{fr:"Record de réutilisation · sans-faute parfait",en:"Reuse record holder · perfect landing streak"}},
   {serial:"B1061",flights:25,landings:24,lastPad:"LC-39A",notable:{fr:"Vétéran Crew Dragon",en:"Crew Dragon veteran"}},
   {serial:"B1062",flights:24,landings:23,lastPad:"SLC-4E",notable:{fr:"Missions GPS & sécurité nationale",en:"GPS & national security missions"}},
   {serial:"B1069",flights:22,landings:21,lastPad:"LC-40",notable:{fr:"Lanceur Starlink haute cadence",en:"High-cadence Starlink launcher"}},
@@ -1512,22 +1531,81 @@ const ACTIVE_BOOSTERS=[
   {serial:"B1083",flights:20,landings:19,lastPad:"LC-40",notable:{fr:"Dernier grand voleur",en:"Latest high-flier"}},
 ];
 const CREW_DRAGONS=[
-  {id:"endeavour",name:"Endeavour",serial:"C206",missions:5,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
+  {id:"endeavour",name:"Endeavour",serial:"C206",missions:6,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
    img:PROD_CDN+"spacex_crew_drag_image_20200504074435.jpeg",wiki:"SpaceX Dragon 2",
-   firstFlight:"2020-05-30",lastFlight:"2023-10-16",nextFlight:"2026-10-15",
-   palmares:{fr:[["Demo-2 : 1er Crew Dragon en orbite","ok"],["5 missions habitées","ok"]],en:[["Demo-2: First Crew Dragon in orbit","ok"],["5 crewed missions","ok"]]}},
+   firstFlight:"2020-05-30",lastFlight:"2025-08-01",nextFlight:null,
+   palmares:{fr:[["Demo-2 : 1er Crew Dragon en orbite","ok"],["6 missions habitées","ok"]],en:[["Demo-2: First Crew Dragon in orbit","ok"],["6 crewed missions","ok"]]},
+   flights:[
+     {m:"Demo-2",launch:"2020-05-30",land:"2020-08-02",crew:["Douglas Hurley","Robert Behnken"]},
+     {m:"Crew-2",launch:"2021-04-23",land:"2021-11-09",crew:["Shane Kimbrough","Megan McArthur","Akihiko Hoshide","Thomas Pesquet"]},
+     {m:"Axiom Mission 1",launch:"2022-04-08",land:"2022-04-25",crew:["Michael López-Alegría","Larry Connor","Eytan Stibbe","Mark Pathy"]},
+     {m:"Crew-6",launch:"2023-03-02",land:"2023-09-04",crew:["Stephen Bowen","Warren Hoburg","Sultan Al Neyadi","Andreï Fediaïev"]},
+     {m:"Crew-8",launch:"2024-03-04",land:"2024-10-25",crew:["Matthew Dominick","Michael Barratt","Jeanette Epps","Alexandre Grebionkine"]},
+     {m:"Crew-11",launch:"2025-08-01",land:"2026-01-15",crew:["Zena Cardman","Michael Fincke","Kimiya Yui","Oleg Platonov"]},
+   ]},
   {id:"resilience",name:"Resilience",serial:"C207",missions:4,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
    img:PROD_CDN+"spacex_crew_drag_image_20200504074435.jpeg",wiki:"SpaceX Dragon 2",
-   firstFlight:"2020-11-15",lastFlight:"2023-02-26",nextFlight:"2026-09-20",
-   palmares:{fr:[["Inspiration4 (1er équipage 100% civil)","ok"],["4 missions","ok"]],en:[["Inspiration4 (first all-civilian crew)","ok"],["4 missions","ok"]]}},
+   firstFlight:"2020-11-16",lastFlight:"2025-04-01",nextFlight:null,
+   palmares:{fr:[["Inspiration4 (1er équipage 100% civil)","ok"],["4 missions","ok"]],en:[["Inspiration4 (first all-civilian crew)","ok"],["4 missions","ok"]]},
+   flights:[
+     {m:"Crew-1",launch:"2020-11-16",land:"2021-05-02",crew:["Michael Hopkins","Victor Glover","Soichi Noguchi","Shannon Walker"]},
+     {m:"Inspiration4",launch:"2021-09-16",land:"2021-09-18",crew:["Jared Isaacman","Sian Proctor","Hayley Arceneaux","Christopher Sembroski"]},
+     {m:"Polaris Dawn",launch:"2024-09-10",land:"2024-09-15",crew:["Jared Isaacman","Scott Poteet","Sarah Gillis","Anna Menon"]},
+     {m:"Fram2",launch:"2025-04-01",land:"2025-04-04",crew:["Jannicke Mikkelsen","Rabea Rogge","Chun Wang","Eric Philips"]},
+   ]},
   {id:"endurance",name:"Endurance",serial:"C210",missions:4,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
    img:PROD_CDN+"spacex_crew_drag_image_20200504074435.jpeg",wiki:"SpaceX Dragon 2",
-   firstFlight:"2022-03-02",lastFlight:"2024-08-15",nextFlight:"2026-08-10",
-   palmares:{fr:[["Crew-3, Crew-5, Crew-7, Crew-9",""],["4 rotations ISS","ok"]],en:[["Crew-3, Crew-5, Crew-7, Crew-9",""],["4 ISS rotations","ok"]]}},
-  {id:"freedom",name:"Freedom",serial:"C212",missions:3,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
+   firstFlight:"2021-11-11",lastFlight:"2025-03-12",nextFlight:null,
+   palmares:{fr:[["Crew-3, Crew-5, Crew-7, Crew-10",""],["4 rotations ISS","ok"]],en:[["Crew-3, Crew-5, Crew-7, Crew-10",""],["4 ISS rotations","ok"]]},
+   flights:[
+     {m:"Crew-3",launch:"2021-11-11",land:"2022-05-06",crew:["Raja Chari","Thomas Marshburn","Kayla Barron","Matthias Maurer"]},
+     {m:"Crew-5",launch:"2022-10-05",land:"2023-03-12",crew:["Nicole Mann","Josh Cassada","Kōichi Wakata","Anna Kikina"]},
+     {m:"Crew-7",launch:"2023-08-26",land:"2024-03-12",crew:["Jasmin Moghbeli","Andreas Mogensen","Satoshi Furukawa","Konstantin Borissov"]},
+     {m:"Crew-10",launch:"2025-03-12",land:"2025-08-09",crew:["Anne McClain","Nichole Ayers","Takuya Onishi","Kirill Peskov"]},
+   ]},
+  {id:"freedom",name:"Freedom",serial:"C212",missions:5,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
    img:PROD_CDN+"spacex_crew_drag_image_20200504074435.jpeg",wiki:"SpaceX Dragon 2",
-   firstFlight:"2023-04-27",lastFlight:"2024-03-09",nextFlight:"2026-07-25",
-   palmares:{fr:[["Crew-4, Axiom-1, Crew-8",""],["Missions commerciales & NASA","ok"]],en:[["Crew-4, Axiom-1, Crew-8",""],["Commercial & NASA missions","ok"]]}},
+   firstFlight:"2022-04-27",lastFlight:"2026-02-13",nextFlight:null,
+   palmares:{fr:[["Crew-4, Ax-2, Ax-3, Crew-9, Crew-12",""],["5 missions ISS","ok"]],en:[["Crew-4, Ax-2, Ax-3, Crew-9, Crew-12",""],["5 ISS missions","ok"]]},
+   flights:[
+     {m:"Crew-4",launch:"2022-04-27",land:"2022-10-14",crew:["Kjell Lindgren","Robert Hines","Samantha Cristoforetti","Jessica Watkins"]},
+     {m:"Axiom Mission 2",launch:"2023-05-21",land:"2023-05-31",crew:["Peggy Whitson","John Shoffner","Ali Al-Qarni","Rayyanah Barnawi"]},
+     {m:"Axiom Mission 3",launch:"2024-01-18",land:"2024-02-09",crew:["Michael López-Alegría","Walter Villadei","Alper Gezeravcı","Marcus Wandt"]},
+     {m:"Crew-9",launch:"2024-09-28",land:"2025-03-18",crew:["Nick Hague","Alexandre Gorbounov","Barry Wilmore","Sunita Williams"]},
+     {m:"Crew-12",launch:"2026-02-13",land:null,crew:["Jessica Meir","Jack Hathaway","Sophie Adenot","Andreï Fediaïev"]},
+   ]},
+  {id:"grace",name:"Grace",serial:"C213",missions:1,crew:"4 (max 7)",status:{fr:"Actif",en:"Active"},
+   img:PROD_CDN+"spacex_crew_drag_image_20200504074435.jpeg",wiki:"SpaceX Dragon 2",
+   firstFlight:"2025-06-25",lastFlight:"2025-06-25",nextFlight:null,
+   palmares:{fr:[["5ᵉ et dernière capsule Crew Dragon",""],["Axiom Mission 4","ok"]],en:[["5th and final Crew Dragon capsule",""],["Axiom Mission 4","ok"]]},
+   flights:[
+     {m:"Axiom Mission 4",launch:"2025-06-25",land:"2025-07-15",crew:["Peggy Whitson","Shubhanshu Shukla","Sławosz Uznański-Wiśniewski","Tibor Kapu"]},
+   ]},
+];
+const CARGO_DRAGONS=[
+  {id:"c208",serial:"C208",status:{fr:"Actif",en:"Active"},firstFlight:"2020-12-06",missions:5,
+   flights:[
+     {m:"CRS-21",launch:"2020-12-06",land:"2021-01-14",crew:[]},
+     {m:"CRS-23",launch:"2021-08-29",land:"2021-10-01",crew:[]},
+     {m:"CRS-25",launch:"2022-07-15",land:"2022-08-20",crew:[]},
+     {m:"CRS-28",launch:"2023-06-05",land:"2023-06-30",crew:[]},
+     {m:"CRS-31",launch:"2024-11-05",land:"2024-12-17",crew:[]},
+   ]},
+  {id:"c209",serial:"C209",status:{fr:"Actif",en:"Active"},firstFlight:"2021-03-15",missions:6,
+   flights:[
+     {m:"CRS-22",launch:"2021-03-15",land:"2021-04-20",crew:[]},
+     {m:"CRS-24",launch:"2021-12-21",land:"2022-01-24",crew:[]},
+     {m:"CRS-27",launch:"2023-03-15",land:"2023-04-15",crew:[]},
+     {m:"CRS-30",launch:"2024-03-21",land:"2024-04-30",crew:[]},
+     {m:"CRS-32",launch:"2025-04-21",land:"2025-05-25",crew:[]},
+     {m:"CRS-34",launch:"2026-05-15",land:null,crew:[]},
+   ]},
+  {id:"c211",serial:"C211",status:{fr:"Actif",en:"Active"},firstFlight:"2022-11-26",missions:3,
+   flights:[
+     {m:"CRS-26",launch:"2022-11-26",land:"2023-01-11",crew:[]},
+     {m:"CRS-29",launch:"2023-11-10",land:"2023-12-22",crew:[]},
+     {m:"CRS-33",launch:"2025-08-24",land:"2026-02-27",crew:[]},
+   ]},
 ];
 function L(field){ return (field && (field[LANG]!==undefined ? field[LANG] : field.fr)) ; }
 function rocketCardHTML(r,retired){
@@ -1559,6 +1637,17 @@ function boosterGridHTML(){
     <div class="bgnotable">${esc(L(b.notable))}</div>
     <div class="bgpad"><span class="bgpad-lbl">${esc(t('b_last_pad'))}</span><span class="bgpad-val">${esc(b.lastPad)}</span></div></div>`).join('')}</div>`;
 }
+function flightHistoryHTML(flights){
+  if(!flights||!flights.length) return '';
+  return `<div class="flighthist"><div class="fh-title">${esc(t('fh_title'))}</div>${flights.map(f=>{
+    const ongoing=!f.land;
+    return `<div class="frow ${ongoing?'ongoing':''}"><span class="fdot"></span><div class="fbody">
+      <div class="fmission">${esc(f.m)}${ongoing?`<span class="ftag">${esc(t('cd_ongoing'))}</span>`:''}</div>
+      <div class="fdate">${fmtDay(f.launch)} → ${ongoing?'—':fmtDay(f.land)}</div>
+      ${f.crew&&f.crew.length?`<div class="fcrew">${esc(f.crew.join(' · '))}</div>`:''}
+    </div></div>`;
+  }).join('')}</div>`;
+}
 function crewDragonHTML(){
   return CREW_DRAGONS.map(d=>{
     const pal=L(d.palmares)||[];
@@ -1582,7 +1671,32 @@ function crewDragonHTML(){
         <div class="cdate"><span>${esc(t('cd_last_flight'))}</span><b>${fmtDay(d.lastFlight)}</b></div>
         <div class="cdate"><span>${esc(t('cd_next_flight'))}</span><b>${fmtDay(d.nextFlight)}</b></div>
       </div>
+      ${flightHistoryHTML(d.flights)}
       <div class="wikibox" id="wiki-cd-${d.id}"><div class="miniload"><span class="ms"></span>${esc(t('wiki_loading'))}</div></div>
+    </div></div></div>`;
+  }).join('');
+}
+function cargoDragonHTML(){
+  return CARGO_DRAGONS.map(d=>{
+    return `<div class="rkcard"><div class="rkgrid">
+    <div class="rkimg cargoimg">
+      <div class="rkveil"></div>
+      <span class="rktag" style="color:var(--go)">${esc(L(d.status))}</span>
+      <span class="rkbadge">${esc(d.serial)}</span>
+    </div>
+    <div class="rkbody">
+      <h3>${esc(d.serial)}</h3>
+      <div class="rksub">Cargo Dragon 2</div>
+      <div class="specgrid">
+        <div class="spec"><span>${esc(t('cd_missions_lbl'))}</span><b>${d.missions}</b></div>
+        <div class="spec"><span>${esc(t('cd_status_lbl'))}</span><b>${esc(L(d.status))}</b></div>
+      </div>
+      <div class="cdates" style="grid-template-columns:repeat(2,1fr)">
+        <div class="cdate"><span>${esc(t('cd_first_flight'))}</span><b>${fmtDay(d.firstFlight)}</b></div>
+        <div class="cdate"><span>${esc(t('cd_last_flight'))}</span><b>${fmtDay(d.flights[d.flights.length-1]?.launch)}</b></div>
+      </div>
+      ${flightHistoryHTML(d.flights)}
+      <div class="wikibox" id="wiki-cargo-${d.id}"><div class="miniload"><span class="ms"></span>${esc(t('wiki_loading'))}</div></div>
     </div></div></div>`;
   }).join('');
 }
@@ -1595,6 +1709,8 @@ function buildEncy(){
     boosterGridHTML()+
     `<div class="encyhead"><h2>${esc(t('ency_crewdragon'))}</h2><span class="eh-sub">${esc(t('ency_crewdragon_sub'))}</span></div>`+
     crewDragonHTML()+
+    `<div class="encyhead"><h2>${esc(t('ency_cargodragon'))}</h2><span class="eh-sub">${esc(t('ency_cargodragon_sub'))}</span></div>`+
+    cargoDragonHTML()+
     `<div class="encyhead"><h2>${esc(t('ency_retired'))}</h2><span class="eh-sub">${esc(t('ency_retired_sub'))}</span></div>`+
     RETIRED.map(r=>rocketCardHTML(r,true)).join('');
   reveal(host);
@@ -1617,6 +1733,15 @@ function buildEncy(){
       <div class="wtxt">${esc(trim(res.extract,460))}
       <a class="wsrc" href="${esc(res.link)}" target="_blank" rel="noopener">${esc(t('wiki_full'))}</a></div>`;
     } else { box.innerHTML=`<div class="wmini"><a class="wsrc" href="https://${LANG}.wikipedia.org/wiki/${encodeURIComponent(d.wiki)}" target="_blank" rel="noopener">${esc(t('wiki_read_on'))}</a></div>`; }
+  });
+  CARGO_DRAGONS.forEach(async d=>{
+    const box=document.getElementById('wiki-cargo-'+d.id); if(!box) return;
+    const res=await wikiSummary("SpaceX Dragon 2",LANG);
+    if(!box.isConnected) return;
+    if(res){ box.innerHTML=`${res.thumb?`<img src="${esc(res.thumb)}" alt="" onerror="${IMGERR}"/>`:""}
+      <div class="wtxt">${esc(trim(res.extract,460))}
+      <a class="wsrc" href="${esc(res.link)}" target="_blank" rel="noopener">${esc(t('wiki_full'))}</a></div>`;
+    } else { box.innerHTML=`<div class="wmini"><a class="wsrc" href="https://${LANG}.wikipedia.org/wiki/SpaceX_Dragon_2" target="_blank" rel="noopener">${esc(t('wiki_read_on'))}</a></div>`; }
   });
 }
 

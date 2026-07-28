@@ -11,7 +11,7 @@ struct BoosterStats {
 // Hardcoded booster records from Wikipedia as fallback
 // Source: https://en.wikipedia.org/wiki/List_of_Falcon_9_first-stage_boosters
 let BOOSTER_RECORDS: [String: (flights: Int, turnaround: Int?)] = [
-    "B1067": (flights: 35, turnaround: nil),   // Fleet leader
+    "B1067": (flights: 36, turnaround: nil),   // Fleet leader
     "B1062": (flights: 23, turnaround: 21),    // 21j turnaround record
     "B1076": (flights: 18, turnaround: 21),    // 21j turnaround record
     "B1061": (flights: 23, turnaround: 25),    // 25j turnaround
@@ -71,7 +71,7 @@ class StatsCalculator {
         // Always use B1067 as fleet leader if it's in the records and API data is missing or incomplete
         if boosterStats.isEmpty || maxFlights < 15 {
             fleetLeader = "B1067"
-            maxFlights = BOOSTER_RECORDS["B1067"]?.flights ?? 35
+            maxFlights = BOOSTER_RECORDS["B1067"]?.flights ?? 36
         } else if let b1067Stats = boosterStats["B1067"], b1067Stats.flights > maxFlights {
             fleetLeader = "B1067"
             maxFlights = b1067Stats.flights

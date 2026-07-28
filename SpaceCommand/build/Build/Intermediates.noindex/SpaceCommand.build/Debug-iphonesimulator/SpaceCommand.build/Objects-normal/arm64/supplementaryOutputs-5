@@ -1,23 +1,23 @@
 {
-  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/Countdown.swift" : {
-    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Countdown.swiftconstvalues",
-    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Countdown.d",
-    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Countdown.dia",
-    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Countdown.o",
-    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Countdown.swiftdeps"
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/CountdownState.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/CountdownState.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/CountdownState.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/CountdownState.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/CountdownState.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/CountdownState.swiftdeps"
   },
-  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/EncyclopediaView.swift" : {
-    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/EncyclopediaView.swiftconstvalues",
-    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/EncyclopediaView.d",
-    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/EncyclopediaView.dia",
-    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/EncyclopediaView.o",
-    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/EncyclopediaView.swiftdeps"
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Launch.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Launch.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Launch.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Launch.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Launch.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Launch.swiftdeps"
   },
-  "/Users/kevinmelyon/SpaceX/SpaceCommand/SpaceCommand/Views/LaunchCard.swift" : {
-    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/LaunchCard.swiftconstvalues",
-    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/LaunchCard.d",
-    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/LaunchCard.dia",
-    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/LaunchCard.o",
-    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/LaunchCard.swiftdeps"
+  "/Users/kevinmelyon/SpaceX/SpaceCommand/Shared/Rocket.swift" : {
+    "const-values" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Rocket.swiftconstvalues",
+    "dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Rocket.d",
+    "diagnostics" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Rocket.dia",
+    "object" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Rocket.o",
+    "swift-dependencies" : "/Users/kevinmelyon/SpaceX/SpaceCommand/build/Build/Intermediates.noindex/SpaceCommand.build/Debug-iphonesimulator/SpaceCommand.build/Objects-normal/arm64/Rocket.swiftdeps"
   }
 }

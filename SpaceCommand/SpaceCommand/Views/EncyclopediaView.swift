@@ -15,6 +15,7 @@ struct EncyclopediaView: View {
                     )
                     boostersSection
                     crewDragonSection
+                    cargoDragonSection
                     section(
                         title: lang.t("ency_retired"),
                         sub: lang.t("ency_retired_sub"),
@@ -145,6 +146,24 @@ struct EncyclopediaView: View {
 
             ForEach(RocketCatalog.crewDragons) { dragon in
                 CrewDragonCard(dragon: dragon).environmentObject(lang)
+            }
+        }
+    }
+
+    private var cargoDragonSection: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(alignment: .firstTextBaseline, spacing: 12) {
+                Text(lang.t("ency_cargodragon"))
+                    .font(Font2.orbitron(18, weight: .bold))
+                    .foregroundColor(Palette.text)
+                Text("// " + lang.t("ency_cargodragon_sub"))
+                    .font(Font2.body(12))
+                    .foregroundColor(Palette.muted)
+                Rectangle().fill(Palette.stroke).frame(height: 1).frame(maxWidth: .infinity)
+            }
+
+            ForEach(RocketCatalog.cargoDragons) { dragon in
+                CargoDragonCard(dragon: dragon).environmentObject(lang)
             }
         }
     }
@@ -395,9 +414,14 @@ struct CrewDragonCard: View {
 
                 let dateCols = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
                 LazyVGrid(columns: dateCols, spacing: 8) {
-                    dateCell(lang.t("cd_first_flight"), fmtDay(dragon.firstFlight))
-                    dateCell(lang.t("cd_last_flight"), fmtDay(dragon.lastFlight))
-                    dateCell(lang.t("cd_next_flight"), fmtDay(dragon.nextFlight))
+                    DragonDateCell(label: lang.t("cd_first_flight"), value: fmtDay(dragon.firstFlight))
+                    DragonDateCell(label: lang.t("cd_last_flight"), value: fmtDay(dragon.lastFlight))
+                    DragonDateCell(label: lang.t("cd_next_flight"), value: fmtDay(dragon.nextFlight))
+                }
+
+                if !dragon.flightHistory.isEmpty {
+                    Divider().background(Palette.stroke)
+                    DragonFlightHistory(flights: dragon.flightHistory)
                 }
 
                 if let wiki, let extract = wiki.extract {
@@ -443,7 +467,95 @@ struct CrewDragonCard: View {
         }
     }
 
-    private func dateCell(_ label: String, _ value: String) -> some View {
+    private func fmtDay(_ iso: String?) -> String {
+        fmtDragonDate(iso, locale: lang.current)
+    }
+
+    @MainActor
+    private func loadWiki() async {
+        loading = true
+        defer { loading = false }
+        wiki = await WikipediaService.shared.summary(title: dragon.wikipediaTitle, language: lang.current.rawValue)
+    }
+}
+
+private func fmtDragonDate(_ iso: String?, locale: AppLanguage) -> String {
+    guard let iso else { return "—" }
+    let parser = DateFormatter()
+    parser.dateFormat = "yyyy-MM-dd"
+    parser.locale = Locale(identifier: "en_US_POSIX")
+    guard let d = parser.date(from: iso) else { return iso }
+    let fmt = DateFormatter()
+    fmt.dateStyle = .medium
+    fmt.timeStyle = .none
+    fmt.locale = Locale(identifier: locale == .fr ? "fr_FR" : "en_US")
+    return fmt.string(from: d)
+}
+
+struct DragonFlightHistory: View {
+    let flights: [DragonFlight]
+    @EnvironmentObject var lang: LanguageStore
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("HISTORIQUE DES VOLS")
+                .font(Font2.mono(9, weight: .semibold))
+                .tracking(1.2)
+                .foregroundColor(Palette.faint)
+
+            VStack(alignment: .leading, spacing: 10) {
+                ForEach(flights, id: \.mission) { flight in
+                    row(flight)
+                }
+            }
+        }
+    }
+
+    private func row(_ flight: DragonFlight) -> some View {
+        let ongoing = flight.landingDate == nil
+        return HStack(alignment: .top, spacing: 10) {
+            Circle()
+                .fill(ongoing ? Palette.go : Palette.accent)
+                .frame(width: 6, height: 6)
+                .padding(.top, 5)
+                .shadow(color: ongoing ? Palette.go.opacity(0.7) : .clear, radius: 3)
+
+            VStack(alignment: .leading, spacing: 3) {
+                HStack(spacing: 6) {
+                    Text(flight.mission)
+                        .font(Font2.body(12, weight: .semibold))
+                        .foregroundColor(Palette.text)
+                    if ongoing {
+                        Text("EN COURS")
+                            .font(Font2.mono(7, weight: .bold))
+                            .tracking(0.6)
+                            .foregroundColor(Palette.go)
+                            .padding(.horizontal, 5).padding(.vertical, 2)
+                            .overlay(RoundedRectangle(cornerRadius: 5).stroke(Palette.go.opacity(0.5), lineWidth: 0.5))
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                    }
+                }
+                Text(ongoing
+                     ? fmtDragonDate(flight.launchDate, locale: lang.current) + " → —"
+                     : "\(fmtDragonDate(flight.launchDate, locale: lang.current)) → \(fmtDragonDate(flight.landingDate, locale: lang.current))")
+                    .font(Font2.mono(10))
+                    .foregroundColor(Palette.muted)
+                if !flight.crew.isEmpty {
+                    Text(flight.crew.joined(separator: " · "))
+                        .font(Font2.body(10))
+                        .foregroundColor(Palette.faint)
+                        .lineLimit(2)
+                }
+            }
+        }
+    }
+}
+
+private struct DragonDateCell: View {
+    let label: String
+    let value: String
+
+    var body: some View {
         VStack(alignment: .leading, spacing: 4) {
             Text(label)
                 .font(Font2.mono(7, weight: .medium))
@@ -463,25 +575,107 @@ struct CrewDragonCard: View {
         .overlay(RoundedRectangle(cornerRadius: 9).stroke(Palette.stroke, lineWidth: 0.5))
         .clipShape(RoundedRectangle(cornerRadius: 9))
     }
+}
 
-    private func fmtDay(_ iso: String?) -> String {
-        guard let iso else { return "—" }
-        let parser = DateFormatter()
-        parser.dateFormat = "yyyy-MM-dd"
-        parser.locale = Locale(identifier: "en_US_POSIX")
-        guard let d = parser.date(from: iso) else { return iso }
-        let fmt = DateFormatter()
-        fmt.dateStyle = .medium
-        fmt.timeStyle = .none
-        fmt.locale = Locale(identifier: lang.current == .fr ? "fr_FR" : "en_US")
-        return fmt.string(from: d)
+struct CargoDragonCard: View {
+    let dragon: CargoDragonReference
+    @EnvironmentObject var lang: LanguageStore
+    @State private var wiki: WikiSummary?
+    @State private var loading = false
+
+    var body: some View {
+        VStack(spacing: 0) {
+            ZStack(alignment: .bottomLeading) {
+                Rectangle()
+                    .fill(Palette.bg2)
+                    .frame(height: 90)
+                    .frame(maxWidth: .infinity)
+                    .overlay(
+                        Image(systemName: "shippingbox.fill")
+                            .font(.system(size: 34, weight: .light))
+                            .foregroundColor(Palette.muted.opacity(0.35))
+                    )
+                HStack {
+                    Text("ACTIVE")
+                        .font(Font2.mono(9, weight: .semibold))
+                        .tracking(1.4)
+                        .foregroundColor(Palette.go)
+                        .padding(.horizontal, 8).padding(.vertical, 4)
+                        .overlay(RoundedRectangle(cornerRadius: 8).stroke(Palette.go, lineWidth: 1))
+                    Spacer()
+                    Text(dragon.serial)
+                        .font(Font2.orbitron(20, weight: .bold))
+                        .foregroundColor(Palette.text)
+                }
+                .padding(14)
+            }
+
+            VStack(alignment: .leading, spacing: 12) {
+                let cols = [GridItem(.adaptive(minimum: 100), spacing: 8)]
+                LazyVGrid(columns: cols, spacing: 8) {
+                    EncySpecCell(label: lang.t("cd_missions"), value: "\(dragon.missions)")
+                    EncySpecCell(label: lang.t("cd_status"), value: dragon.status)
+                }
+
+                let dateCols = [GridItem(.flexible()), GridItem(.flexible())]
+                LazyVGrid(columns: dateCols, spacing: 8) {
+                    DragonDateCell(label: lang.t("cd_first_flight"), value: fmtDragonDate(dragon.firstFlight, locale: lang.current))
+                    DragonDateCell(label: lang.t("cd_last_flight"), value: fmtDragonDate(dragon.flightHistory.last?.launchDate, locale: lang.current))
+                }
+
+                if !dragon.flightHistory.isEmpty {
+                    Divider().background(Palette.stroke)
+                    DragonFlightHistory(flights: dragon.flightHistory)
+                }
+
+                if let wiki, let extract = wiki.extract {
+                    Divider().background(Palette.stroke)
+                    HStack(alignment: .top, spacing: 12) {
+                        if let url = wiki.thumbnail?.source {
+                            AsyncImage(url: url) { phase in
+                                if case .success(let img) = phase {
+                                    img.resizable().scaledToFill()
+                                } else { Color.black.opacity(0.3) }
+                            }
+                            .frame(width: 80, height: 80)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Palette.stroke, lineWidth: 0.5))
+                        }
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(extract)
+                                .font(Font2.body(12))
+                                .foregroundColor(Color(red: 0.769, green: 0.824, blue: 0.925))
+                                .lineLimit(4)
+                            if let page = wiki.contentUrls?.desktop?.page {
+                                Link(destination: page) {
+                                    Label(lang.t("wiki_read_on"), systemImage: "book")
+                                        .font(Font2.body(11, weight: .semibold))
+                                        .foregroundColor(Color(red: 0.812, green: 0.878, blue: 0.984))
+                                }
+                            }
+                        }
+                    }
+                } else if loading {
+                    HStack(spacing: 8) {
+                        ProgressView().controlSize(.small)
+                        Text(lang.t("wiki_loading")).font(Font2.body(12)).foregroundColor(Palette.muted)
+                    }
+                }
+            }
+            .padding(14)
+        }
+        .panel(radius: 20)
+        .task { await loadWiki() }
+        .onChange(of: lang.current) { _, _ in
+            Task { await loadWiki() }
+        }
     }
 
     @MainActor
     private func loadWiki() async {
         loading = true
         defer { loading = false }
-        wiki = await WikipediaService.shared.summary(title: dragon.wikipediaTitle, language: lang.current.rawValue)
+        wiki = await WikipediaService.shared.summary(title: "SpaceX Dragon 2", language: lang.current.rawValue)
     }
 }
 

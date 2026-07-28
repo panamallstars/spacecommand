@@ -6,7 +6,7 @@
 	<integer>12</integer>
 	<key>logs</key>
 	<dict>
-		<key>D13D1608-DE2E-4A0C-A3C8-FF3FF765BF51</key>
+		<key>E7E27E5C-C6C0-430C-9F70-D88165323280</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,13 +15,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>D13D1608-DE2E-4A0C-A3C8-FF3FF765BF51.xcactivitylog</string>
+			<string>E7E27E5C-C6C0-430C-9F70-D88165323280.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>W</string>
+				<string>S</string>
 				<key>totalNumberOfAnalyzerIssues</key>
 				<integer>0</integer>
 				<key>totalNumberOfErrors</key>
@@ -29,7 +29,7 @@
 				<key>totalNumberOfTestFailures</key>
 				<integer>0</integer>
 				<key>totalNumberOfWarnings</key>
-				<integer>4</integer>
+				<integer>0</integer>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>SpaceCommand project</string>
@@ -38,15 +38,15 @@
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
-			<string>Building project SpaceCommand with scheme SpaceCommand</string>
+			<string>Cleaning project SpaceCommand with scheme SpaceCommand</string>
 			<key>timeStartedRecording</key>
-			<real>804798268.35627902</real>
+			<real>806877661.55081296</real>
 			<key>timeStoppedRecording</key>
-			<real>804798272.01687396</real>
+			<real>806877661.908571</real>
 			<key>title</key>
-			<string>Building project SpaceCommand with scheme SpaceCommand</string>
+			<string>Cleaning project SpaceCommand with scheme SpaceCommand</string>
 			<key>uniqueIdentifier</key>
-			<string>D13D1608-DE2E-4A0C-A3C8-FF3FF765BF51</string>
+			<string>E7E27E5C-C6C0-430C-9F70-D88165323280</string>
 		</dict>
 	</dict>
 </dict>
